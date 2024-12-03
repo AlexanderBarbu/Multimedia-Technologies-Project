@@ -153,7 +153,7 @@ Kit.prototype.load = function() {
     var pathName = this.pathName();
 
     var kickPath = pathName + "kick.wav";
-    var snarePath = "sounds/drum-samples/Bongos/" + "snare.wav";
+    var snarePath = pathName + "snare.wav";
     var hihatPath = pathName + "hihat.wav";
     var tom1Path = pathName + "tom1.wav";
     var tom2Path = pathName + "tom2.wav";
