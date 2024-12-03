@@ -153,7 +153,7 @@ Kit.prototype.load = function() {
     var pathName = this.pathName();
 
     var kickPath = pathName + "kick.wav";
-    var snarePath = pathName + "snare.wav";
+    var snarePath = "sounds/drum-samples/Bongos/" + "snare.wav";
     var hihatPath = pathName + "hihat.wav";
     var tom1Path = pathName + "tom1.wav";
     var tom2Path = pathName + "tom2.wav";
@@ -673,14 +673,14 @@ function handleSliderMouseDown(event) {
     // calculate offset of mousedown on slider
     var el = event.target;
     if (mouseCapture == 'swing_thumb') {
-        var thumbX = 0;    
+        var thumbX = 0;
         do {
             thumbX += el.offsetLeft;
         } while (el = el.offsetParent);
 
         mouseCaptureOffset = event.pageX - thumbX;
     } else {
-        var thumbY = 0;    
+        var thumbY = 0;
         do {
             thumbY += el.offsetTop;
         } while (el = el.offsetParent);
