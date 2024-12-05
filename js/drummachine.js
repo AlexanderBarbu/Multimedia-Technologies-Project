@@ -886,12 +886,13 @@ function handleKitMouseDown(event) {
     var index = kitNamePretty.indexOf(event.target.innerHTML);
     theBeat.kitIndex = index;
     currentKit = kits[index];
+    theBeat.loadSample(3, "sounds/drum-samples/Bongos/tom1.wav", false);
     document.getElementById('kitname').innerHTML = kitNamePretty[index];
 }
 
 function handleKit1MouseDown(event) {
     var index = kitNamePretty.indexOf(event.target.innerHTML);
-    theBeat.kitIndex1 = index;
+    theBeat.kitIndex = index;
     currentKit = kits[index];
     document.getElementById('kitname1').innerHTML = kitNamePretty[index];
 }
