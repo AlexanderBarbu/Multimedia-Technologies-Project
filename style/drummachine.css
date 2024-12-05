@@ -107,7 +107,7 @@ body {
 .combo {
 	width: 158px;
 	height: 15px;
-	background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), 
+	background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)),
 		color-stop(2%, rgb(255, 255, 255)), color-stop(5%, rgb(244, 244, 244)), 
 		color-stop(90%, rgb(255, 255, 255)), to(rgb(232, 232, 232)));
 	border-radius: 3px;

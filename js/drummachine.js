@@ -419,7 +419,9 @@ function init() {
 
 
     var elKitCombo = document.getElementById('kitcombo');
+    var elKitCombo1 = document.getElementById('kitcombo1');
     elKitCombo.addEventListener("mousedown", handleKitComboMouseDown, true);
+    elKitCombo1.addEventListener("mousedown", handleKitCombo1MouseDown, true);
 
     var elEffectCombo = document.getElementById('effectcombo');
     elEffectCombo.addEventListener("mousedown", handleEffectComboMouseDown, true);
@@ -447,6 +449,7 @@ function initControls() {
     // Initialize note buttons
     initButtons();
     makeKitList();
+    makeKitList1();
     makeEffectList();
 
     // sliders
@@ -530,6 +533,20 @@ function makeKitList() {
         elItem.addEventListener("mousedown", handleKitMouseDown, true);
     }
 }
+
+function makeKitList1() {
+    var elList = document.getElementById('kitlist1');
+    var numKits = kitName.length;
+
+    for (var i = 0; i < numKits; i++) {
+        var elItem = document.createElement('li');
+        elItem.innerHTML = kitNamePretty[i];
+        elList.appendChild(elItem);
+        elItem.addEventListener("mousedown", handleKit1MouseDown, true);
+    }
+}
+
+
 
 function advanceNote() {
     // Advance time by a 16th note...
@@ -861,6 +878,10 @@ function handleKitComboMouseDown(event) {
     document.getElementById('kitcombo').classList.toggle('active');
 }
 
+function handleKitCombo1MouseDown(event) {
+    document.getElementById('kitcombo1').classList.toggle('active');
+}
+
 function handleKitMouseDown(event) {
     var index = kitNamePretty.indexOf(event.target.innerHTML);
     theBeat.kitIndex = index;
@@ -868,12 +889,27 @@ function handleKitMouseDown(event) {
     document.getElementById('kitname').innerHTML = kitNamePretty[index];
 }
 
+function handleKit1MouseDown(event) {
+    var index = kitNamePretty.indexOf(event.target.innerHTML);
+    theBeat.kitIndex1 = index;
+    currentKit = kits[index];
+    document.getElementById('kitname1').innerHTML = kitNamePretty[index];
+}
+
 function handleBodyMouseDown(event) {
     var elKitcombo = document.getElementById('kitcombo');
+    var elKitcombo1 = document.getElementById('kitcombo1');
     var elEffectcombo = document.getElementById('effectcombo');
 
     if (elKitcombo.classList.contains('active') && !isDescendantOfId(event.target, 'kitcombo_container')) {
         elKitcombo.classList.remove('active');
+        if (!isDescendantOfId(event.target, 'effectcombo_container')) {
+            event.stopPropagation();
+        }
+    }
+
+    if (elKitcombo1.classList.contains('active') && !isDescendantOfId(event.target, 'kitcombo1_container')) {
+        elKitcombo1.classList.remove('active');
         if (!isDescendantOfId(event.target, 'effectcombo_container')) {
             event.stopPropagation();
         }
@@ -1122,6 +1158,7 @@ function updateControls() {
     }
 
     document.getElementById('kitname').innerHTML = kitNamePretty[theBeat.kitIndex];
+    document.getElementById('kitname1').innerHTML = kitNamePretty[theBeat.kitIndex];
     document.getElementById('effectname').innerHTML = impulseResponseInfoList[theBeat.effectIndex].name;
     document.getElementById('tempo').innerHTML = theBeat.tempo;
     sliderSetPosition('swing_thumb', theBeat.swingFactor);
