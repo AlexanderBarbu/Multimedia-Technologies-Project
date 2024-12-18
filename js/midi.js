@@ -14,7 +14,7 @@ function midiMessageReceived( ev ) {
       // note on
       console.log("Note on - channel: " + channel + " note: " + noteNumber + " velocity: " + velocity );
       if ((channel == 9)||(channel==1))
-        playDrum(noteNumber, velocity);
+        playDrum(noteNumber, velocity, );
       else
         noteOn( noteNumber, velocity);
     } else if (cmd == 11) {

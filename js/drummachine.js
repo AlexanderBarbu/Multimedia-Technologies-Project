@@ -136,7 +136,7 @@ function Kit(name) {
     
     this.startedLoading = false;
     this.isLoaded = false;
-    
+
     this.demoIndex = -1;
 }
 
@@ -149,7 +149,6 @@ Kit.prototype.load = function() {
         return;
         
     this.startedLoading = true;
-        
     var pathName = this.pathName();
 
     var kickPath = pathName + "kick.wav";
@@ -641,17 +640,17 @@ function schedule() {
         // Attempt to synchronize drawing time with sound
         if (noteTime != lastDrawTime) {
             lastDrawTime = noteTime;
-            drawPlayhead((rhythmIndex + 15) % 16);
+            drawPlayhead((rhythmIndex + 15) % loopLength);
         }
 
         advanceNote();
     }
 }
 
-function playDrum(noteNumber, velocity) {
+function playDrum(noteNumber, velocity, kit1) {
     switch (noteNumber) {
         case 0x24:
-            playNote(currentKit.kickBuffer,  false, 0,0,-2,  0.5, (velocity / 127), kickPitch,  0);
+            playNote(kit1.kickBuffer,  false, 0,0,-2,  0.5, (velocity / 127), kickPitch,  0);
             break;
         case 0x26:
             playNote(currentKit.snareBuffer, false, 0,0,-2,  1,   (velocity / 127), snarePitch, 0);
@@ -669,7 +668,7 @@ function playDrum(noteNumber, velocity) {
             playNote(currentKit.tom3,        false, 0,0,-2,  1,   (velocity / 127), tom3Pitch,  0);
             break;
         default:
-            console.log("note:0x" + noteNumber.toString(16) );
+            console.log("note:0x" + noteNumber.toString(loopLength) );
     }
 }
 
@@ -880,22 +879,30 @@ function handleKitComboMouseDown(event) {
 
 function handleKitCombo1MouseDown(event) {
     document.getElementById('kitcombo1').classList.toggle('active');
+    console.log("Event Target InnerHTML:", event.target.innerHTML);
+    console.log("Current Kit:", currentKit);
 }
 
 function handleKitMouseDown(event) {
     var index = kitNamePretty.indexOf(event.target.innerHTML);
     theBeat.kitIndex = index;
     currentKit = kits[index];
-    //theBeat.loadSample(3, "sounds/drum-samples/Bongos/tom1.wav", false);
     document.getElementById('kitname').innerHTML = kitNamePretty[index];
     document.getElementById('kitname1').innerHTML = kitNamePretty[index];
+    console.log("Event Target InnerHTML:", event.target.innerHTML);
+    console.log("Index Found:", index);
+    console.log("Beat Index:", theBeat.kitIndex);
+    console.log("Current Kit:", currentKit);
+
 }
 
 function handleKit1MouseDown(event) {
     var index = kitNamePretty.indexOf(event.target.innerHTML);
-    theBeat.kitIndex = index;
-    currentKit = kits[index];
+    theBeat.kit1 = index;
+    Kit1 = kits[index];
     document.getElementById('kitname1').innerHTML = kitNamePretty[index];
+    console.log("Current Kit:", Kit1);
+
 }
 
 function handleBodyMouseDown(event) {
@@ -1031,10 +1038,10 @@ function handlePlay(event) {
 function handleStop(event) {
     timerWorker.postMessage("stop");
 
-    var elOld = document.getElementById('LED_' + (rhythmIndex + 14) % 16);
+    var elOld = document.getElementById('LED_' + (rhythmIndex + 14) % loopLength);
     elOld.src = 'images/LED_off.png';
 
-    hideBeat( (rhythmIndex + 14) % 16 );
+    hideBeat( (rhythmIndex + 14) % loopLength );
 
     rhythmIndex = 0;
 
@@ -1184,7 +1191,7 @@ function drawNote(draw, xindex, yindex) {
 }
 
 function drawPlayhead(xindex) {
-    var lastIndex = (xindex + 15) % 16;
+    var lastIndex = (xindex + 15) % loopLength;
 
     var elNew = document.getElementById('LED_' + xindex);
     var elOld = document.getElementById('LED_' + lastIndex);
