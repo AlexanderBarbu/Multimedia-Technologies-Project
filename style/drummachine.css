@@ -58,7 +58,6 @@ body {
 #LED_row {
 	margin-top: 8px;
 	margin-bottom: 12px;
-	margin-left: 175px;
 }
 
 .label {
@@ -72,8 +71,7 @@ body {
 }
 
 #pad {
-	height: 268px;
-	margin-inline: 60px;
+	margin-right: 100px
 }
 
 #params {

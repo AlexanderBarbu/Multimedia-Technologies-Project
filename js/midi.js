@@ -1,41 +1,41 @@
 function midiMessageReceived( ev ) {
-    var cmd = ev.data[0] >> 4;
-    var channel = ev.data[0] & 0xf;
-    var noteNumber = ev.data[1];
-    var velocity = 0;
-    if (ev.data.length > 2)
-      velocity = ev.data[2];
+  var cmd = ev.data[0] >> 4;
+  var channel = ev.data[0] & 0xf;
+  var noteNumber = ev.data[1];
+  var velocity = 0;
+  if (ev.data.length > 2)
+    velocity = ev.data[2];
 
-    if ( cmd==8 || ((cmd==9)&&(velocity==0)) ) { // with MIDI, note on with velocity zero is the same as note off
-      // note off
-      if (channel!=9)
-        noteOff( noteNumber );
-    } else if (cmd == 9) {
-      // note on
-      console.log("Note on - channel: " + channel + " note: " + noteNumber + " velocity: " + velocity );
-      if ((channel == 9)||(channel==1))
-        playDrum(noteNumber, velocity, );
-      else
-        noteOn( noteNumber, velocity);
-    } else if (cmd == 11) {
-      console.log("controller: channel: " + channel + " controller: " + noteNumber + " value: " + velocity );
-      controller( noteNumber, velocity);
-    } else if ((ev.data.length == 6) &&
+  if ( cmd==8 || ((cmd==9)&&(velocity==0)) ) { // with MIDI, note on with velocity zero is the same as note off
+    // note off
+    if (channel!=9)
+      noteOff( noteNumber );
+  } else if (cmd == 9) {
+    // note on
+    console.log("Note on - channel: " + channel + " note: " + noteNumber + " velocity: " + velocity );
+    if ((channel == 9)||(channel==1))
+      playDrum(noteNumber, velocity);
+    else
+      noteOn( noteNumber, velocity);
+  } else if (cmd == 11) {
+    console.log("controller: channel: " + channel + " controller: " + noteNumber + " value: " + velocity );
+    controller( noteNumber, velocity);
+  } else if ((ev.data.length == 6) &&
       (ev.data[0] == 0xf0) &&
       (ev.data[1] == 0x7f) &&
       (ev.data[3] == 0x06) &&
       (ev.data[5] == 0xf7) ) { // MIDI Machine Control (MMC) message
-      switch (ev.data[4]) {
-        case 0x01: // stop
-          handleStop();
-          break;
-        case 0x02: // start
-          handlePlay();
-          break;
-      }
-    } else {
-      console.log("unrecognized message");
+    switch (ev.data[4]) {
+      case 0x01: // stop
+        handleStop();
+        break;
+      case 0x02: // start
+        handlePlay();
+        break;
     }
+  } else {
+    console.log("unrecognized message");
+  }
 }
 
 function nonControllrMidiMessageReceived( ev ) {
@@ -94,7 +94,7 @@ function onMIDIInit( midi ) {
   midiAccess = midi;
   selectMIDIIn=document.getElementById("midiIn");
   selectMIDIOut=document.getElementById("midiOut");
-  
+
   // clear the MIDI input select
   selectMIDIIn.options.length = 0;
   selectMIDIOut.options.length = 0;
@@ -163,7 +163,7 @@ function onMIDIInit( midi ) {
   }
   selectMIDIIn.onchange = changeMIDIIn;
   selectMIDIOut.onchange = changeMIDIOut;
-  
+
   setActiveInstrument( 0 );
   updateActiveInstruments();
 
@@ -190,17 +190,17 @@ function onMIDISystemError( msg ) {
   console.log( "Error encountered:" + msg );
 }
 //init: start up MIDI
-window.addEventListener('load', function() {   
+window.addEventListener('load', function() {
   navigator.requestMIDIAccess().then( onMIDIInit, onMIDISystemError );
 });
 
 var currentlyActiveInstrument = 0;
 
 function keyForInstrument(index) {
-    if (index <3)
-      return index;
-    else
-      return index+1;
+  if (index <3)
+    return index;
+  else
+    return index+1;
 }
 
 function colorForIntrument(index) {
@@ -224,7 +224,7 @@ function updateActiveInstruments() {
       midiOut.send( [0x90, keyForInstrument(i)+8, colorForIntrument(i)] );
     else
       midiOut.send( [0x80, keyForInstrument(i)+8, 0x00] );
- }
+}
 
 function setActiveInstrument(index) {
   //turn off the last lit-up instrument
@@ -240,12 +240,12 @@ function setActiveInstrument(index) {
   var notes = theBeat.rhythm1;
 
   switch (currentlyActiveInstrument) {
-      case 0: notes = theBeat.rhythm1; break;
-      case 1: notes = theBeat.rhythm2; break;
-      case 2: notes = theBeat.rhythm3; break;
-      case 3: notes = theBeat.rhythm4; break;
-      case 4: notes = theBeat.rhythm5; break;
-      case 5: notes = theBeat.rhythm6; break;
+    case 0: notes = theBeat.rhythm1; break;
+    case 1: notes = theBeat.rhythm2; break;
+    case 2: notes = theBeat.rhythm3; break;
+    case 3: notes = theBeat.rhythm4; break;
+    case 4: notes = theBeat.rhythm5; break;
+    case 5: notes = theBeat.rhythm6; break;
   }
 
   for (var beat=0; beat<16; beat++)
@@ -262,55 +262,55 @@ function showCorrectNote( index, note ) {
 }
 
 function toggleBeat(rhythmIndex) {
-    var notes = theBeat.rhythm1;
+  var notes = theBeat.rhythm1;
 
-    switch (currentlyActiveInstrument) {
-        case 0: notes = theBeat.rhythm1; break;
-        case 1: notes = theBeat.rhythm2; break;
-        case 2: notes = theBeat.rhythm3; break;
-        case 3: notes = theBeat.rhythm4; break;
-        case 4: notes = theBeat.rhythm5; break;
-        case 5: notes = theBeat.rhythm6; break;
-    }
+  switch (currentlyActiveInstrument) {
+    case 0: notes = theBeat.rhythm1; break;
+    case 1: notes = theBeat.rhythm2; break;
+    case 2: notes = theBeat.rhythm3; break;
+    case 3: notes = theBeat.rhythm4; break;
+    case 4: notes = theBeat.rhythm5; break;
+    case 5: notes = theBeat.rhythm6; break;
+  }
 
-    notes[rhythmIndex] = (notes[rhythmIndex] + 1) % 3;
+  notes[rhythmIndex] = (notes[rhythmIndex] + 1) % 3;
 
-    drawNote(notes[rhythmIndex], rhythmIndex, currentlyActiveInstrument);
+  drawNote(notes[rhythmIndex], rhythmIndex, currentlyActiveInstrument);
 
-    showCorrectNote( rhythmIndex, notes[rhythmIndex] );
+  showCorrectNote( rhythmIndex, notes[rhythmIndex] );
 
-/* // not sure if we want to play notes when toggling on MIDI device
-    var note = notes[rhythmIndex];
-    
-    if (note) {
-        switch(instrumentIndex) {
-        case 0:  // Kick
-          playNote(currentKit.kickBuffer, false, 0,0,-2, 0.5 * theBeat.effectMix, volumes[note] * 1.0, kickPitch, 0);
-          break;
+  /* // not sure if we want to play notes when toggling on MIDI device
+      var note = notes[rhythmIndex];
 
-        case 1:  // Snare
-          playNote(currentKit.snareBuffer, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, snarePitch, 0);
-          break;
+      if (note) {
+          switch(instrumentIndex) {
+          case 0:  // Kick
+            playNote(currentKit.kickBuffer, false, 0,0,-2, 0.5 * theBeat.effectMix, volumes[note] * 1.0, kickPitch, 0);
+            break;
 
-        case 2:  // Hihat
-          // Pan the hihat according to sequence position.
-          playNote(currentKit.hihatBuffer, true, 0.5*rhythmIndex - 4, 0, -1.0, theBeat.effectMix, volumes[note] * 0.7, hihatPitch, 0);
-          break;
+          case 1:  // Snare
+            playNote(currentKit.snareBuffer, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, snarePitch, 0);
+            break;
 
-        case 3:  // Tom 1   
-          playNote(currentKit.tom1, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom1Pitch, 0);
-          break;
+          case 2:  // Hihat
+            // Pan the hihat according to sequence position.
+            playNote(currentKit.hihatBuffer, true, 0.5*rhythmIndex - 4, 0, -1.0, theBeat.effectMix, volumes[note] * 0.7, hihatPitch, 0);
+            break;
 
-        case 4:  // Tom 2   
-          playNote(currentKit.tom2, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom2Pitch, 0);
-          break;
+          case 3:  // Tom 1
+            playNote(currentKit.tom1, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom1Pitch, 0);
+            break;
 
-        case 5:  // Tom 3   
-          playNote(currentKit.tom3, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom3Pitch, 0);
-          break;
-        }
-    }
-*/
+          case 4:  // Tom 2
+            playNote(currentKit.tom2, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom2Pitch, 0);
+            break;
+
+          case 5:  // Tom 3
+            playNote(currentKit.tom3, false, 0,0,-2, theBeat.effectMix, volumes[note] * 0.6, tom3Pitch, 0);
+            break;
+          }
+      }
+  */
 
 }
 
