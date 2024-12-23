@@ -53,6 +53,7 @@ body {
 }
 
 .buttons_row {
+	width: 1400px
 }
 
 #LED_row {
@@ -71,7 +72,7 @@ body {
 }
 
 #pad {
-	margin-right: 100px
+	margin-right: 400px
 }
 
 #params {

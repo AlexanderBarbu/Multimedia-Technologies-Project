@@ -177,12 +177,12 @@ function onMIDIInit( midi ) {
 
 function showBeat(index) {
   if (midiOut && outputIsLivid)
-    midiOut.send( [0x90, 16 + index, ((index%4)==0) ? 0x03 : 0x07]);
+    midiOut.send( [0x90, loopLength + index, ((index%4)==0) ? 0x03 : 0x07]);
 }
 
 function hideBeat(index) {
   if (midiOut && outputIsLivid)
-    midiOut.send( [0x80, 16 + index, 0x00] );
+    midiOut.send( [0x80, loopLength + index, 0x00] );
 }
 
 
@@ -248,7 +248,7 @@ function setActiveInstrument(index) {
     case 5: notes = theBeat.rhythm6; break;
   }
 
-  for (var beat=0; beat<16; beat++)
+  for (var beat=0; beat<loopLength; beat++)
     showCorrectNote( beat, notes[beat] );
 }
 
@@ -315,7 +315,7 @@ function toggleBeat(rhythmIndex) {
 }
 
 function noteOn( noteNumber, velocity) {
-  if (noteNumber < 16) {  // 4x4 grid
+  if (noteNumber < loopLength) {  // 4x4 grid
     switch (noteNumber) {
       case 0:
       case 1:

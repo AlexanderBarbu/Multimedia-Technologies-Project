@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="22.12.24">
+      <change beforePath="$PROJECT_DIR$/images/LED_on.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/LED_on.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/drummachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/drummachine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/midi.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/midi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/drummachine.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/drummachine.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "N1KOSV"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/AlexanderBarbu/Multimedia-Technologies-Project.git",
+    "accountId": "210b01e6-4900-45f3-b874-c75b6c6c0249"
+  }
+}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2p4vFmxlJi1FhF5brKPQrT93bAP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JavaScript Debug.index.html.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="" />
+      <created>1732038060608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732038060608</updated>
+      <workItem from="1732038061811" duration="116000" />
+      <workItem from="1732458456306" duration="8000" />
+      <workItem from="1733241366820" duration="13377000" />
+      <workItem from="1733582815940" duration="19000" />
+      <workItem from="1733590120956" duration="2688000" />
+      <workItem from="1733760507418" duration="530000" />
+      <workItem from="1733772393835" duration="4000" />
+      <workItem from="1733839118806" duration="2381000" />
+      <workItem from="1734089608590" duration="335000" />
+      <workItem from="1734090083817" duration="251000" />
+      <workItem from="1734187936532" duration="2972000" />
+      <workItem from="1734191757712" duration="707000" />
+      <workItem from="1734274192951" duration="25000" />
+      <workItem from="1734520427459" duration="5677000" />
+      <workItem from="1734624702996" duration="1790000" />
+      <workItem from="1734862101298" duration="235000" />
+      <workItem from="1734862388737" duration="20002000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added the initial Codebase">
+      <option name="closed" value="true" />
+      <created>1732038145462</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732038145462</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1733241640391</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733241640391</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Basic changes">
+      <option name="closed" value="true" />
+      <created>1733244053028</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733244053028</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Basic changes">
+      <option name="closed" value="true" />
+      <created>1733247013072</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733247013072</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Basic changes pt.2">
+      <option name="closed" value="true" />
+      <created>1733414314500</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733414314500</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Basic changes pt.2">
+      <option name="closed" value="true" />
+      <created>1733420489729</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733420489729</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Basic changes pt.2">
+      <option name="closed" value="true" />
+      <created>1733594043358</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733594043358</updated>
+    </task>
+    <task id="LOCAL-00008" summary="18.12.24">
+      <option name="closed" value="true" />
+      <created>1734520871153</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734520871153</updated>
+    </task>
+    <task id="LOCAL-00009" summary="22.12.24">
+      <option name="closed" value="true" />
+      <created>1734864834755</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1734864834755</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added the initial Codebase" />
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="Basic changes" />
+    <MESSAGE value="Basic changes pt.2" />
+    <MESSAGE value="18.12.24" />
+    <MESSAGE value="22.12.24" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.12.24" />
+  </component>
+</project>
