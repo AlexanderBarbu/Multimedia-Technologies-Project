@@ -121,31 +121,14 @@ function hide(prev){
 }
 
 function getRhythm(number){
-    if (loopLength == 4) {
-        
-        return rhythm_4s[number - 1]
-    }
-    if (loopLength == 8) {
-        return rhythm_8s[number - 1]
-    }
-    if (loopLength == 12) {
-        return rhythm_12s[number - 1]
-    }
-    if (loopLength == 16) {
-        return rhythm_16s[number - 1]
-    }
-    if (loopLength == 20) {
-        return rhythm_20s[number - 1]
-    }
-    if (loopLength == 24) {
-        return rhythm_24s[number - 1]
-    }
-    if (loopLength == 28) {
-        return rhythm_28s[number - 1]
-    }
-    if (loopLength == 32) {
-        return rhythm_32s[number - 1]
-    }
+    if (loopLength == 4) {return rhythm_4s[number - 1]}
+    if (loopLength == 8) {return rhythm_8s[number - 1]}
+    if (loopLength == 12) {return rhythm_12s[number - 1]}
+    if (loopLength == 16) {return rhythm_16s[number - 1]}
+    if (loopLength == 20) {return rhythm_20s[number - 1]}
+    if (loopLength == 24) {return rhythm_24s[number - 1]}
+    if (loopLength == 28) {return rhythm_28s[number - 1]}
+    if (loopLength == 32) {return rhythm_32s[number - 1]}
 }
 
 var beatReset = {"kitIndex":0,"effectIndex":0,"tempo":100,"swingFactor":0,"effectMix":0.25,"kickPitchVal":0.5,"snarePitchVal":0.5,"hihatPitchVal":0.5,"tom1PitchVal":0.5,"tom2PitchVal":0.5,"tom3PitchVal":0.5,"rhythm1":rhythm1,"rhythm2":rhythm2,"rhythm3":rhythm3,"rhythm4":rhythm4,"rhythm5":rhythm5,"rhythm6":rhythm6};
@@ -1033,7 +1016,6 @@ function handleLoopMouseDown(event) {
         loopLength = loopOptions[index]; // Update global loopLength
         hide(prev);
         document.getElementById('loopname').innerHTML = loopLength; // Update UI display
-        console.log("AddedListener", getRhythm(4));
         updateRhythms();
         rhythmIndex = 0; // Reset rhythm index to match new loop length
         updateControls(); // Refresh UI to reflect changes
@@ -1094,7 +1076,6 @@ function handleEffectMouseDown(event) {
             // ... since they just explicitly chose an effect from the list.
             if (theBeat.effectMix == 0)
                 theBeat.effectMix = 0.5;
-
             setEffect(i);
             break;
         }
@@ -1133,21 +1114,70 @@ function setEffectLevel() {
 function handleDemoMouseDown(event) {
     var loaded = false;
 
+    function preloadBeat(){
+        var prev=loopLength;
+        loopLength = 16; // Update global loopLength
+        hide(prev);
+        document.getElementById('loopname').innerHTML = loopLength; // Update UI display
+        updateRhythms();
+        rhythmIndex = 0; // Reset rhythm index to match new loop length
+    }
+    
     switch(event.target.id) {
         case 'demo1':
             loaded = loadBeat(beatDemo[0]);
+            preloadBeat();
+            rhythm1 = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            rhythm2 = [0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0];
+            rhythm3 = [0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0];
+            rhythm4 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0];
+            rhythm5 = [0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            rhythm6 = [0,0,0,0,0,0,0,2,0,2,2,0,0,0,0,0];
+            updateControls(); // Refresh UI to reflect changes
             break;
         case 'demo2':
             loaded = loadBeat(beatDemo[1]);
+            preloadBeat();
+            rhythm1 = [2,1,0,0,0,0,0,0,2,1,2,1,0,0,0,0];
+            rhythm2 = [0,0,0,0,2,0,0,0,0,1,1,0,2,0,0,0];
+            rhythm3 = [0,1,2,1,0,1,2,1,0,1,2,1,0,1,2,1];
+            rhythm4 = [0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0];
+            rhythm5 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0];
+            rhythm6 = [0,0,0,0,0,0,0,2,1,2,1,0,0,0,0,0];
+            updateControls();
             break;
         case 'demo3':
             loaded = loadBeat(beatDemo[2]);
+            preloadBeat();
+            rhythm1 = [2,0,0,0,2,0,0,0,2,0,0,0,2,0,0,0];
+            rhythm2 = [0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0];
+            rhythm3 = [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0];
+            rhythm4 = [1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1];
+            rhythm5 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0];
+            rhythm6 = [0,0,1,0,1,0,0,2,0,2,0,0,1,0,0,0];
+            updateControls();
             break;
         case 'demo4':
             loaded = loadBeat(beatDemo[3]);
+            preloadBeat();
+            rhythm1 = [2,0,0,0,0,0,0,2,2,0,0,0,0,0,0,1];
+            rhythm2 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            rhythm3 = [0,0,1,0,2,0,1,0,1,0,1,0,2,0,2,0];
+            rhythm4 = [2,0,2,0,0,0,0,0,2,0,0,0,0,2,0,0];
+            rhythm5 = [0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            rhythm6 = [0,2,0,0,0,2,0,0,0,2,0,0,0,0,0,0];
+            updateControls();
             break;
         case 'demo5':
             loaded = loadBeat(beatDemo[4]);
+            preloadBeat();
+            rhythm1 = [2,2,0,1,2,2,0,1,2,2,0,1,2,2,0,1];
+            rhythm2 = [0,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0];
+            rhythm3 = [2,1,1,1,2,1,1,1,2,1,1,1,2,1,1,1];
+            rhythm4 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            rhythm5 = [0,0,1,0,0,1,0,1,0,0,1,0,0,0,1,0];
+            rhythm6 = [1,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0];
+            updateControls();
             break;
     }
 
@@ -1255,7 +1285,16 @@ function toggleLoadContainer() {
 }
 
 function handleReset(event) {
-    handleStop();
+    for (var i = 0; i < loopLength; ++i) {
+        rhythm1[i] = 0;
+        rhythm2[i] = 0;
+        rhythm3[i] = 0;
+        rhythm4[i] = 0;
+        rhythm5[i] = 0;
+        rhythm6[i] = 0;
+    }
+    //handleStop();
+    updateControls();
     loadBeat(beatReset);
 }
 
@@ -1280,6 +1319,7 @@ function loadBeat(beat) {
     sliderSetValue('tom3_thumb', theBeat.tom3PitchVal);
     sliderSetValue('swing_thumb', theBeat.swingFactor);
 
+    
     updateControls();
     setActiveInstrument(0);
 
@@ -1305,6 +1345,7 @@ function updateControls() {
     document.getElementById('kitname').innerHTML = kitNamePretty[theBeat.kitIndex];
     document.getElementById('loopname').innerHTML = loopLength;
     document.getElementById('effectname').innerHTML = impulseResponseInfoList[theBeat.effectIndex].name;
+    console.log(impulseResponseInfoList[theBeat.effectIndex].name);
     document.getElementById('tempo').innerHTML = theBeat.tempo;
     sliderSetPosition('swing_thumb', theBeat.swingFactor);
     sliderSetPosition('effect_thumb', theBeat.effectMix);
