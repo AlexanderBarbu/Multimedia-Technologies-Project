@@ -61,6 +61,81 @@ body {
 	margin-bottom: 12px;
 }
 
+
+	button {
+			color: white;
+			padding: 5px 10px;
+			border: none;
+			border-radius: 4px;
+			align-content: center;
+			cursor: pointer;
+			text-decoration: none;
+			/* margin-left: 10px; */
+}
+
+	@keyframes pulseShadow {
+		0% {
+			box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+		}
+		70% {
+			box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+		}
+		100% {
+			box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+		}
+	}
+
+
+	.playback-area{
+	display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	#mic{
+		grid-column-start: 1;
+		grid-row-start: 1;
+		height: 4em;
+		background-color: #6c6fd1;
+	}
+
+	.clear{
+		grid-column-start: 2;
+	}
+
+	#mic.isRecording {
+		background-color: red;
+		color: white;
+		animation: pulseShadow 2s infinite;
+	}
+	audio {
+		margin-top: 20px;
+	}
+	.playback-container {
+		margin-bottom: 10px; /* Space between players */
+		display: flex;
+	}
+	.download-btn {
+		background-color: white;
+		color: #4CAF50;
+		padding: 5px 10px;
+		border: none;
+		border-radius: 4px;
+		align-content: center;
+		cursor: pointer;
+		text-decoration: none;
+		/* margin-left: 10px; */
+	}
+
+	.download-btn:hover {
+		background-color: #45a049;
+		color: white;
+		animation: pulseShadow 2s infinite;
+	}
+
+#LED_row img {
+	width: 38px;
+}
+
 .label {
 	display: inline-block;
 	vertical-align: top;
@@ -93,6 +168,7 @@ body {
 	padding: 0;
 	margin: 0;
 	border: 0;
+	width: 38px;
 }
 
 #kitlabel, #effectlabel, #swinglabel {
@@ -256,6 +332,17 @@ body {
 	height: 521px;
 }
 
+#save_container {
+	grid-gap: 24%;
+	text-align: center;
+	align-content: center;
+}
+
+#save_container h3 {
+	grid-column-start: 2;
+	grid-column-end: 4;
+}
+
 #save_textarea, #load_textarea {
 	width: 607px;
 	height: 270px;
@@ -267,6 +354,7 @@ body {
 #save_ok {
 	display: block;
 	margin: 0 auto;
+	padding: 6%;
 }
 
 #load_buttons {

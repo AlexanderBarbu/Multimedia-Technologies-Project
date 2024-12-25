@@ -1223,8 +1223,93 @@ function handleStop(event) {
 
 function handleSave(event) {
     toggleSaveContainer();
-    var elTextarea = document.getElementById('save_textarea');
-    elTextarea.value = JSON.stringify(theBeat);
+    document.getElementById('title').innerHTML = 'Audio Recording';
+    const mic_btn = document.getElementById('mic');
+    const playbackArea = document.getElementById('playback-area');
+    const clearButton = document.getElementById('clear');
+
+    mic_btn.addEventListener('click', ToggleMic);
+    clearButton.addEventListener('click', clearRecordings);
+
+    let canRecord = false;
+    let isRecording = false;
+    let recorder = null;
+    let chunks = [];
+    let recordings = [];
+
+    function SetupAudio() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(SetupStream)
+                .catch(err => console.error(err));
+        }
+    }
+
+    SetupAudio();
+
+    function SetupStream(stream) {
+        recorder = new MediaRecorder(stream);
+
+        recorder.ondataavailable = e => chunks.push(e.data);
+
+        recorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'audio/mp3; codecs=opus' });
+            chunks = [];
+
+            const date = new Date();
+            const filename = `recording_${date.toISOString().replace(/[-:T\.Z]/g, '')}.mp3`;
+            const audioURL = URL.createObjectURL(blob);
+            recordings.push({ url: audioURL, filename: filename }); // Store recording data
+
+            displayRecordings();
+        };
+
+        canRecord = true;
+    }
+
+    function ToggleMic() {
+        if (!canRecord) return;
+
+        isRecording = !isRecording;
+        mic_btn.classList.toggle('isRecording', isRecording);
+
+        // Add this line to change button text
+        mic_btn.textContent = isRecording ? 'Stop Recording' : 'Start Recording';
+
+        if (isRecording) {
+            recorder.start();
+        } else {
+            recorder.stop();
+        }
+    }
+
+    function displayRecordings() {
+        playbackArea.innerHTML = '';
+        clearButton.style.display = recordings.length > 0 ? 'inline-block' : 'none';
+
+        recordings.forEach(recording => {
+            const playbackContainer = document.createElement('div');
+            playbackContainer.className = 'playback-container';
+
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.src = recording.url;
+            playbackContainer.appendChild(audio);
+
+            const downloadLink = document.createElement('a');
+            downloadLink.href = recording.url;
+            downloadLink.download = recording.filename;
+            downloadLink.className = 'download-btn';  // Add this line
+            downloadLink.textContent = 'Download';    // Simplified text
+            playbackContainer.appendChild(downloadLink);
+
+            playbackArea.appendChild(playbackContainer);
+        });
+    }
+    function clearRecordings(){
+        recordings = [];
+        displayRecordings();
+    }
 }
 
 function handleSaveOk(event) {
@@ -1400,3 +1485,6 @@ function setFilterQ( Q ) {
     if (filterNode)
         filterNode.Q.value = Q;
 }
+
+// RECORD HANDLING
+
