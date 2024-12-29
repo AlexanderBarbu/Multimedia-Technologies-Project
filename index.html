@@ -40,7 +40,7 @@
 -->
 
 <body id='body'>
-<div id='title'> WebAudio Drum Machine <span id='version'>1.0</span> </div>  <!-- THE PAGE TITLE -->
+<div id='title'> Melodik Drum Machine </div>  <!-- THE PAGE TITLE -->
 
 <section class='container active' id='pad'> <!-- THE TOP BUTTONS UP TO THE LED LIGHTS -->
 
@@ -219,21 +219,24 @@
 
 <div class='container' id='save_container'>
     <button id="mic">Record</button>
-    <div id="playback-area"></div> <button id="clear" style="display: none;grid-column-start: 2">clear</button>
+    <div id="vocal-playback-area"></div> <button id="clear" style="display: none;grid-column-start: 2">clear</button>
     <img id='save_ok' src='images/btn_ok.png'>
 </div>
 
 <div class='container' id='load_container'>
     <h3>
-        Load a Beat
+        Record your Beat
     </h3>
-    <p>
-        Paste the beat data into the blank window below and click OK.
-    </p>
-    <textarea id='load_textarea' spellcheck='false'></textarea>
+    <p>Press "Start Recording" to begin recording your beat. Afterwards you can press "Download" to save the beat locally, as an .mp3 file!</p>
+    <!--<textarea id='load_textarea' spellcheck='false'></textarea>-->
+    <button id='beat_rec_btn'>Start Recording</button>
+    <div id="beat-playback-area"></div><button id="clear-beat-rec" style="display: none;grid-column-start: 2">clear</button>
+    Input:
+    <select id=loopsCount onchange='handlePlay();'>
+        <option value="">Not connected</option>
+    </select>
     <div id='load_buttons'>
-        <img id='load_ok' src='images/btn_ok.png'>
-        <img id='load_cancel' src='images/btn_cancel.png'>
+        <img id='load_cancel' src='images/btn_ok.png'>
     </div>
 </div>
 <div class='container' id="io">

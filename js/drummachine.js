@@ -96,7 +96,6 @@ var rhythm6 = rhythm16_6
 function hide(prev){
     if (prev > loopLength) {
         for (let i = prev - 1; i > loopLength - 1; i--) {
-            console.log("Tom1_" + i);
             document.getElementById("Tom1_" + i).toggleAttribute("hidden");
             document.getElementById("Tom2_" + i).toggleAttribute("hidden");
             document.getElementById("Tom3_" + i).toggleAttribute("hidden");
@@ -108,7 +107,6 @@ function hide(prev){
     }
     else if (prev < loopLength) {
         for (let i = prev; i < loopLength; i++) {
-            console.log("Tom1_" + i);
             document.getElementById("Tom1_" + i).toggleAttribute("hidden");
             document.getElementById("Tom2_" + i).toggleAttribute("hidden");
             document.getElementById("Tom3_" + i).toggleAttribute("hidden");
@@ -581,7 +579,7 @@ function initControls() {
     document.getElementById('save').addEventListener('mousedown', handleSave, true);
     document.getElementById('save_ok').addEventListener('mousedown', handleSaveOk, true);
     document.getElementById('load').addEventListener('mousedown', handleLoad, true);
-    document.getElementById('load_ok').addEventListener('mousedown', handleLoadOk, true);
+    //document.getElementById('load_ok').addEventListener('mousedown', handleLoadOk, true);
     document.getElementById('load_cancel').addEventListener('mousedown', handleLoadCancel, true);
     document.getElementById('reset').addEventListener('mousedown', handleReset, true);
     document.getElementById('demo1').addEventListener('mousedown', handleDemoMouseDown, true);
@@ -939,8 +937,6 @@ function handleButtonMouseDown(event) {
     }
 
     notes[rhythmIndex] = (notes[rhythmIndex] + 1) % 3;
-    console.log(notes);
-    console.log("handleButtonMouseDown", notes[rhythmIndex]);
     if (instrumentIndex == currentlyActiveInstrument)
         showCorrectNote( rhythmIndex, notes[rhythmIndex] );
     
@@ -984,7 +980,6 @@ function handleKitComboMouseDown(event) {
 
 function handleLoopComboMouseDown(event) {
     document.getElementById('loopcombo').classList.toggle('active');
-    console.log("Current Loop:", loopLength);
 }
 
 function handleKitMouseDown(event) {
@@ -992,10 +987,6 @@ function handleKitMouseDown(event) {
     theBeat.kitIndex = index;
     currentKit = kits[index];
     document.getElementById('kitname').innerHTML = kitNamePretty[index];
-    console.log("Event Target InnerHTML:", event.target.innerHTML);
-    console.log("Index Found:", index);
-    console.log("Beat Index:", theBeat.kitIndex);
-    console.log("Current Kit:", currentKit);
 
 }
 
@@ -1185,6 +1176,22 @@ function handleDemoMouseDown(event) {
         handlePlay();
 }
 
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function setrecordingtime() {
+        if(isPlaying){handleStop();}
+        console.log("Wait for 3 seconds...");
+        await delay(3000); // Wait for 3 seconds
+        console.log("3 seconds have passed!");
+        handlePlay();
+        await delay(4000);
+        handleStop();
+    }
+    
+
 function handlePlay(event) {
     noteTime = 0.0;
     startTime = context.currentTime + 0.005;
@@ -1225,7 +1232,7 @@ function handleSave(event) {
     toggleSaveContainer();
     document.getElementById('title').innerHTML = 'Audio Recording';
     const mic_btn = document.getElementById('mic');
-    const playbackArea = document.getElementById('playback-area');
+    const vocalPlaybackArea = document.getElementById('vocal-playback-area');
     const clearButton = document.getElementById('clear');
 
     mic_btn.addEventListener('click', ToggleMic);
@@ -1284,7 +1291,7 @@ function handleSave(event) {
     }
 
     function displayRecordings() {
-        playbackArea.innerHTML = '';
+        vocalPlaybackArea.innerHTML = '';
         clearButton.style.display = recordings.length > 0 ? 'inline-block' : 'none';
 
         recordings.forEach(recording => {
@@ -1303,7 +1310,7 @@ function handleSave(event) {
             downloadLink.textContent = 'Download';    // Simplified text
             playbackContainer.appendChild(downloadLink);
 
-            playbackArea.appendChild(playbackContainer);
+            vocalPlaybackArea.appendChild(playbackContainer);
         });
     }
     function clearRecordings(){
@@ -1312,11 +1319,78 @@ function handleSave(event) {
     }
 }
 
+let isRecording = false;
+let mediaRecorder;
+let recordedChunks = [];
+
+function toggle_rec() {
+    beat_rec_btn.textContent = !isRecording ? 'Stop Recording' : 'Start Recording';
+    if (isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        beat_rec_btn.classList.toggle('beatRecording', isRecording);
+    } else {
+        let drumMachineOutput = masterGainNode;
+        let destination = context.createMediaStreamDestination();
+        drumMachineOutput.connect(destination);
+        isRecording = true;
+        beat_rec_btn.classList.toggle('beatRecording', isRecording);
+        mediaRecorder = new MediaRecorder(destination.stream);
+        mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+            }
+        };
+        mediaRecorder.onstop = handleRecordingStop;
+        mediaRecorder.start();
+    }
+}
+
+
+function handleRecordingStop() {
+    const beatPlaybackArea = document.getElementById('beat-playback-area');
+    beatPlaybackArea.innerHTML = '';
+    const clearButton = document.getElementById('clear-beat-rec');
+    recordedChunks = [];
+    let blob = new Blob(recordedChunks, { type: 'audio/mp3; codecs=opus' });
+    beatRecording = false;
+    
+    let audioURL = URL.createObjectURL(blob);
+    beatPlaybackArea.innerHTML = '';
+    
+    const playbackContainer = document.createElement('div');
+    playbackContainer.className = 'playback-container';
+
+    const beat_rec = document.createElement('beat');
+    beat_rec.controls = true;
+    beat_rec.src = audioURL;
+    playbackContainer.appendChild(beat_rec);
+
+    let downloadLink = document.createElement('a');
+    downloadLink.href = audioURL;
+    downloadLink.download = 'recording.mp3';
+    downloadLink.textContent = 'Download';
+    downloadLink.className = 'download-btn';
+    playbackContainer.appendChild(downloadLink);
+    
+    beatPlaybackArea.appendChild(playbackContainer); // Ensure it's appended to the DOM
+}
+
+
 function handleSaveOk(event) {
+    document.getElementById('title').innerHTML = 'Melodik Drum machine';
     toggleSaveContainer();
 }
 
 function handleLoad(event) {
+    loopsCount = document.getElementById("loopsCount");
+    var newOption = document.createElement("option");
+    
+    newOption.value = "newValue";  // The value that will be sent when the option is selected
+    newOption.text = "New Option"; // The visible text of the option
+    loopsCount.appendChild(newOption);
+    beat_rec_btn = document.getElementById('beat_rec_btn');
+    beat_rec_btn.addEventListener("mousedown", toggle_rec);
     toggleLoadContainer();
 }
 
@@ -1430,7 +1504,6 @@ function updateControls() {
     document.getElementById('kitname').innerHTML = kitNamePretty[theBeat.kitIndex];
     document.getElementById('loopname').innerHTML = loopLength;
     document.getElementById('effectname').innerHTML = impulseResponseInfoList[theBeat.effectIndex].name;
-    console.log(impulseResponseInfoList[theBeat.effectIndex].name);
     document.getElementById('tempo').innerHTML = theBeat.tempo;
     sliderSetPosition('swing_thumb', theBeat.swingFactor);
     sliderSetPosition('effect_thumb', theBeat.effectMix);
