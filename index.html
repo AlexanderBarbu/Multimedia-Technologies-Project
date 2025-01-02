@@ -206,14 +206,17 @@
 </section>
 
 <section class='container active' id='tools'>
+    <div id="modeButtons">
     <span class='label' id='beatlabel'>Beat</span>
-    <img id='play' src='images/btn_play_loading.gif' width='80' height='33'>
-    <img id='stop' src='images/btn_stop.png'>
-    <img id='save' src='images/btn_save.png'><img id='load' src='images/btn_load.png'><img id='reset' src='images/btn_reset.png'>
+    <!--<img id='play' src='images/btn_play_loading.gif' width='80' height='33'>
+    <img id='stop' src='images/btn_stop.png'> -->
+    <button id="play" class="button">Play</button>
+    <!-- <img id='save' src='images/btn_save.png'> <img id='load' src='images/btn_load.png'><img id='reset' src='images/btn_reset.png'>--> <button id="save" class="button">Save</button><button id="load" class="button">Load</button><button id="reset" class="button">Reset</button>
     <span id='demos_container'>
             <span class='label' id='demolabel'>Demo</span>
             <img id='demo1' src='images/btn_demo1_loading.gif' width='44' height='33'><img id='demo2' src='images/btn_demo2_loading.gif' width='44' height='33'><img id='demo3' src='images/btn_demo3_loading.gif' width='44' height='33'><img id='demo4' src='images/btn_demo4_loading.gif' width='44' height='33'><img id='demo5' src='images/btn_demo5_loading.gif' width='45' height='33'>
         </span>
+    </div>
 </section>
 
 
@@ -227,14 +230,21 @@
     <h3>
         Record your Beat
     </h3>
-    <p>Press "Start Recording" to begin recording your beat. Afterwards you can press "Download" to save the beat locally, as an .mp3 file!</p>
+    <p>Press "Start Recording" to begin recording your beat. You can also pre-select the duration you need and the recording begins and ends for you automatically! Afterwards you can press "Download" to save the beat locally, as an .mp4 file!</p>
     <!--<textarea id='load_textarea' spellcheck='false'></textarea>-->
-    <button id='beat_rec_btn'>Start Recording</button>
-    <div id="beat-playback-area"></div><button id="clear-beat-rec" style="display: none;grid-column-start: 2">clear</button>
-    Input:
+    <div style="display: inline-flex; justify-content: center; align-items: center; -webkit-padding-start: 10px;">
+    <button id='beat_rec_btn' style="margin-right: 10em;">Start Recording</button>
+    <p style="margin-right: 1em;">Beat Duration:</p>
     <select id=loopsCount onchange='handlePlay();'>
-        <option value="">Not connected</option>
+        <option value=1>1 second</option>
+        <option value=5>5 seconds</option>
+        <option value=10>10 seconds</option>
+        <option value=15>15 Seconds</option>
+        <option value=20>20 Seconds</option>
+        <option value=30>30 Seconds</option>
     </select>
+        </div>
+    <div id="beat-playback-area"></div><button id="clear-beat-rec" style="display: none;grid-column-start: 2">clear</button>
     <div id='load_buttons'>
         <img id='load_cancel' src='images/btn_ok.png'>
     </div>

@@ -6,10 +6,10 @@
 	--ContrastColorLight: #FFD60A;
 	--WritingColor: #CAF0F8;
 }
-
 /* Styles for Drum Machine Demo */
 body {
 	background: linear-gradient(0deg, rgba(0,8,20,1) 0%, rgba(0,29,61,1) 65%, rgba(0,53,102,1) 100%);
+	/*background-color: #8ACE00;*/
 	color: var(--WritingColor);
 	font-family: 'Droid Sans', Arial, sans-serif;
 	font-size: 13px;
@@ -47,7 +47,7 @@ body {
   display: none;
 }
 
-#io { display:block; padding:5px 20px;}
+#io { display:block; padding:5px 20px;margin-right: 11em;}
 .container.active {
 	display: block;
 }
@@ -178,16 +178,39 @@ body {
 	margin-right: 15px;
 }
 
-#pad {
-	margin-right: 400px
-}
+#pad{margin-right: 400px}
+
+#pad.Four{margin-right: -4em}
+
+#pad.Eight{margin-right: 2em;}
+
+#pad.Twelve{margin-right: 7em;}
+
+#pad.Sixteen{margin-right: 13em;}
+
+#pad.Twenty{margin-right: 20em;}
+
+#pad.Twentyfour{margin-right: 26em;}
+
+#pad.Twentyeight{margin-right: 32em;}
+
+#pad.Thirtytwo{margin-right: 36em;}
 
 #params {
 	height: 155px;
+	margin-right: 14em;
+	margin-bottom: 2em;
 }
 
 #tools {
 	height: 36px;
+	margin-right: 13.8em;
+	object-position: center;
+	justify-content: center;
+}
+
+#modeButtons{
+	display: flex;
 }
 
 #paramsleft_container {
@@ -340,20 +363,78 @@ body {
 	vertical-align: top;
 }
 
-#play, #stop {
-	margin-right: 12px;
+#save, #load, #reset{
+	height: 36px;
+	width: 80px;
+	margin-block: 0;
+	font-size: 1.2em;
 }
 
-#stop {
-	display: none;
+#save{
+	border-radius: 10px 0px 0px 1px;
+	color: dodgerblue;
+	background-color: white;
+}
+
+#save:hover{
+	background-color: dodgerblue;
+	color: white;
+}
+
+#load{
+	border-color: #000814;
+	border-width: 3px;
+	border-radius: 0px 0px 0px 0px;
+	color: mediumseagreen;
+	background-color: white;
+}
+
+#load:hover{
+	background-color: mediumseagreen;
+	color: white;
+}
+
+#reset{
+	border-radius: 0px 1px 10px 0px;
+	color: slateblue;
+	background-color: white;
+}
+
+#reset:hover{
+	color: white;
+	background-color: slateblue;
+}
+
+#play {
+	background-color: white;
+	color: #4CAF50;
+	cursor: pointer;
+	margin-right: 12px;
+	height: 36px;
+	width: 80px;
+	margin-block: 0;
+	font-size: 1.2em;
+	border-radius: 1px 10px 1px 10px;
+}
+
+#play:hover {
+	background-color: #45a049;
+	color: white;
+	animation: pulseShadowGreen 2s infinite;
 }
 
 #play.playing {
-	display: none;
+	display: inline;
+	background-color: white;
+	color: red;
 }
 
-#stop.playing {
+
+#play.playing:hover{
 	display: inline;
+	background-color: red;
+	color: white;
+	animation: pulseShadowRed 2s infinite;
 }
 
 #demos_container {

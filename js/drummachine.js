@@ -1,6 +1,7 @@
 
 // Events
 // init() once the page has finished loading.
+// init() once the page has finished loading.
 window.onload = init;
 
 var timerWorker = null; // Worker thread to send us scheduling messages.
@@ -29,71 +30,66 @@ var kMaxSwing = .08;
 
 var currentKit;
 
-var rhythm4_1 = Array(4).fill(0);
-var rhythm4_2 = Array(4).fill(0);
-var rhythm4_3 = Array(4).fill(0);
-var rhythm4_4 = Array(4).fill(0);
-var rhythm4_5 = Array(4).fill(0);
-var rhythm4_6 = Array(4).fill(0);
+var rhythm4_1 = Array(4).fill(0);var rhythm4_2 = Array(4).fill(0);
+var rhythm4_3 = Array(4).fill(0);var rhythm4_4 = Array(4).fill(0);
+var rhythm4_5 = Array(4).fill(0);var rhythm4_6 = Array(4).fill(0);
 var rhythm_4s = [rhythm4_1,rhythm4_2,rhythm4_3,rhythm4_4,rhythm4_5,rhythm4_6];
-var rhythm8_1 = Array(8).fill(0);
-var rhythm8_2 = Array(8).fill(0);
-var rhythm8_3 = Array(8).fill(0);
-var rhythm8_4 = Array(8).fill(0);
-var rhythm8_5 = Array(8).fill(0);
-var rhythm8_6 = Array(8).fill(0);
+var rhythm8_1 = Array(8).fill(0);var rhythm8_2 = Array(8).fill(0);
+var rhythm8_3 = Array(8).fill(0);var rhythm8_4 = Array(8).fill(0);
+var rhythm8_5 = Array(8).fill(0);var rhythm8_6 = Array(8).fill(0);
 var rhythm_8s = [rhythm8_1,rhythm8_2,rhythm8_3,rhythm8_4,rhythm8_5,rhythm8_6];
-var rhythm12_1 = Array(12).fill(0);
-var rhythm12_2 = Array(12).fill(0);
-var rhythm12_3 = Array(12).fill(0);
-var rhythm12_4 = Array(12).fill(0);
-var rhythm12_5 = Array(12).fill(0);
-var rhythm12_6 = Array(12).fill(0);
+var rhythm12_1 = Array(12).fill(0);var rhythm12_2 = Array(12).fill(0);
+var rhythm12_3 = Array(12).fill(0);var rhythm12_4 = Array(12).fill(0);
+var rhythm12_5 = Array(12).fill(0);var rhythm12_6 = Array(12).fill(0);
 var rhythm_12s = [rhythm12_1,rhythm12_2,rhythm12_3,rhythm12_4,rhythm12_5,rhythm12_6];
-var rhythm16_1 = Array(16).fill(0);
-var rhythm16_2 = Array(16).fill(0);
-var rhythm16_3 = Array(16).fill(0);
-var rhythm16_4 = Array(16).fill(0);
-var rhythm16_5 = Array(16).fill(0);
-var rhythm16_6 = Array(16).fill(0);
+var rhythm16_1 = Array(16).fill(0);var rhythm16_2 = Array(16).fill(0);
+var rhythm16_3 = Array(16).fill(0);var rhythm16_4 = Array(16).fill(0);
+var rhythm16_5 = Array(16).fill(0);var rhythm16_6 = Array(16).fill(0);
 var rhythm_16s = [rhythm16_1,rhythm16_2,rhythm16_3,rhythm16_4,rhythm16_5,rhythm16_6];
-var rhythm20_1 = Array(20).fill(0);
-var rhythm20_2 = Array(20).fill(0);
-var rhythm20_3 = Array(20).fill(0);
-var rhythm20_4 = Array(20).fill(0);
-var rhythm20_5 = Array(20).fill(0);
-var rhythm20_6 = Array(20).fill(0);
+var rhythm20_1 = Array(20).fill(0);var rhythm20_2 = Array(20).fill(0);
+var rhythm20_3 = Array(20).fill(0);var rhythm20_4 = Array(20).fill(0);
+var rhythm20_5 = Array(20).fill(0);var rhythm20_6 = Array(20).fill(0);
 var rhythm_20s = [rhythm20_1,rhythm20_2,rhythm20_3,rhythm20_4,rhythm20_5,rhythm20_6];
-var rhythm24_1 = Array(24).fill(0);
-var rhythm24_2 = Array(24).fill(0);
-var rhythm24_3 = Array(24).fill(0);
-var rhythm24_4 = Array(24).fill(0);
-var rhythm24_5 = Array(24).fill(0);
-var rhythm24_6 = Array(24).fill(0);
+var rhythm24_1 = Array(24).fill(0);var rhythm24_2 = Array(24).fill(0);
+var rhythm24_3 = Array(24).fill(0);var rhythm24_4 = Array(24).fill(0);
+var rhythm24_5 = Array(24).fill(0);var rhythm24_6 = Array(24).fill(0);
 var rhythm_24s = [rhythm24_1,rhythm24_2,rhythm24_3,rhythm24_4,rhythm24_5,rhythm24_6];
-var rhythm28_1 = Array(28).fill(0);
-var rhythm28_2 = Array(28).fill(0);
-var rhythm28_3 = Array(28).fill(0);
-var rhythm28_4 = Array(28).fill(0);
-var rhythm28_5 = Array(28).fill(0);
-var rhythm28_6 = Array(28).fill(0);
+var rhythm28_1 = Array(28).fill(0);var rhythm28_2 = Array(28).fill(0);
+var rhythm28_3 = Array(28).fill(0);var rhythm28_4 = Array(28).fill(0);
+var rhythm28_5 = Array(28).fill(0);var rhythm28_6 = Array(28).fill(0);
 var rhythm_28s = [rhythm28_1,rhythm28_2,rhythm28_3,rhythm28_4,rhythm28_5,rhythm28_6];
-var rhythm32_1 = Array(32).fill(0);
-var rhythm32_2 = Array(32).fill(0);
-var rhythm32_3 = Array(32).fill(0);
-var rhythm32_4 = Array(32).fill(0);
-var rhythm32_5 = Array(32).fill(0);
-var rhythm32_6 = Array(32).fill(0);
+var rhythm32_1 = Array(32).fill(0);var rhythm32_2 = Array(32).fill(0);
+var rhythm32_3 = Array(32).fill(0);var rhythm32_4 = Array(32).fill(0);
+var rhythm32_5 = Array(32).fill(0);var rhythm32_6 = Array(32).fill(0);
 rhythm_32s = [rhythm32_1,rhythm32_2,rhythm32_3,rhythm32_4,rhythm32_5,rhythm32_6];
 var rhythm1 = rhythm16_1 
 var rhythm2 = rhythm16_2 
 var rhythm3 = rhythm16_3 
 var rhythm4 = rhythm16_4 
 var rhythm5 = rhythm16_5 
-var rhythm6 = rhythm16_6 
+var rhythm6 = rhythm16_6
 
 
 function hide(prev){
+    pad = document.getElementById("pad");
+    pad.classList.toggle('Four', false);
+    pad.classList.toggle('Eight', false);
+    pad.classList.toggle('Twelve', false);
+    pad.classList.toggle('Sixteen', false);
+    pad.classList.toggle('Twenty', false);
+    pad.classList.toggle('Twentyfour', false);
+    pad.classList.toggle('Twentyeight', false);
+    pad.classList.toggle('Thirtytwo', false);
+    
+    if (loopLength==4){pad.classList.toggle('Four', true);}
+    else if (loopLength==8){pad.classList.toggle('Eight', true);}
+    else if (loopLength==12){pad.classList.toggle('Twelve', true);}
+    else if (loopLength==16){pad.classList.toggle('Sixteen', true);}
+    else if (loopLength==20){pad.classList.toggle('Twenty', true);}
+    else if (loopLength==24){pad.classList.toggle('Twentyfour', true);}
+    else if (loopLength==28){pad.classList.toggle('Twentyeight', true);}
+    else if (loopLength==32){pad.classList.toggle('Thirtytwo', true);}
+    
     if (prev > loopLength) {
         for (let i = prev - 1; i > loopLength - 1; i--) {
             document.getElementById("Tom1_" + i).toggleAttribute("hidden");
@@ -134,7 +130,7 @@ var beatDemo = [
     {"kitIndex":13,"effectIndex":18,"tempo":120,"swingFactor":0,"effectMix":0.19718309859154926,"kickPitchVal":0.5,"snarePitchVal":0.5,"hihatPitchVal":0.5,"tom1PitchVal":0.5,"tom2PitchVal":0.5,"tom3PitchVal":0.5,"rhythm1":[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm2":[0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0],"rhythm3":[0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0],"rhythm4":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0],"rhythm5":[0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm6":[0,0,0,0,0,0,0,2,0,2,2,0,0,0,0,0]},
     {"kitIndex":4,"effectIndex":12,"tempo":100,"swingFactor":0,"effectMix":0.2,"kickPitchVal":0.46478873239436624,"snarePitchVal":0.45070422535211263,"hihatPitchVal":0.15492957746478875,"tom1PitchVal":0.7183098591549295,"tom2PitchVal":0.704225352112676,"tom3PitchVal":0.8028169014084507,"rhythm1":[2,1,0,0,0,0,0,0,2,1,2,1,0,0,0,0],"rhythm2":[0,0,0,0,2,0,0,0,0,1,1,0,2,0,0,0],"rhythm3":[0,1,2,1,0,1,2,1,0,1,2,1,0,1,2,1],"rhythm4":[0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0],"rhythm5":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0],"rhythm6":[0,0,0,0,0,0,0,2,1,2,1,0,0,0,0,0]},
     {"kitIndex":2,"effectIndex":5,"tempo":100,"swingFactor":0,"effectMix":0.25,"kickPitchVal":0.5,"snarePitchVal":0.5,"hihatPitchVal":0.5211267605633803,"tom1PitchVal":0.23943661971830987,"tom2PitchVal":0.21126760563380287,"tom3PitchVal":0.2535211267605634,"rhythm1":[2,0,0,0,2,0,0,0,2,0,0,0,2,0,0,0],"rhythm2":[0,0,0,0,2,0,0,0,0,0,0,0,2,0,0,0],"rhythm3":[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],"rhythm4":[1,1,0,1,1,1,0,1,1,1,0,1,1,1,0,1],"rhythm5":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0],"rhythm6":[0,0,1,0,1,0,0,2,0,2,0,0,1,0,0,0]},
-    {"kitIndex":1,"effectIndex":4,"tempo":120,"swingFactor":0,"effectMix":0.25,"kickPitchVal":0.7887323943661972,"snarePitchVal":0.49295774647887325,"hihatPitchVal":0.5,"tom1PitchVal":0.323943661971831,"tom2PitchVal":0.3943661971830986,"tom3PitchVal":0.323943661971831,"rhythm1":[2,0,0,0,0,0,0,2,2,0,0,0,0,0,0,1],"rhythm2":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm3":[0,0,1,0,2,0,1,0,1,0,1,0,2,0,2,0],"rhythm4":[2,0,2,0,0,0,0,0,2,0,0,0,0,2,0,0],"rhythm5":[0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm6":[0,2,0,0,0,2,0,0,0,2,0,0,0,0,0,0]},
+    {"kitIndex":1,"effectIndex":6,"tempo":120,"swingFactor":0,"effectMix":0.25,"kickPitchVal":0.7887323943661972,"snarePitchVal":0.49295774647887325,"hihatPitchVal":0.5,"tom1PitchVal":0.323943661971831,"tom2PitchVal":0.3943661971830986,"tom3PitchVal":0.323943661971831,"rhythm1":[2,0,0,0,0,0,0,2,2,0,0,0,0,0,0,1],"rhythm2":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm3":[0,0,1,0,2,0,1,0,1,0,1,0,2,0,2,0],"rhythm4":[2,0,2,0,0,0,0,0,2,0,0,0,0,2,0,0],"rhythm5":[0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm6":[0,2,0,0,0,2,0,0,0,2,0,0,0,0,0,0]},
     {"kitIndex":0,"effectIndex":1,"tempo":60,"swingFactor":0.5419847328244275,"effectMix":0.25,"kickPitchVal":0.5,"snarePitchVal":0.5,"hihatPitchVal":0.5,"tom1PitchVal":0.5,"tom2PitchVal":0.5,"tom3PitchVal":0.5,"rhythm1":[2,2,0,1,2,2,0,1,2,2,0,1,2,2,0,1],"rhythm2":[0,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0],"rhythm3":[2,1,1,1,2,1,1,1,2,1,1,1,2,1,1,1],"rhythm4":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"rhythm5":[0,0,1,0,0,1,0,1,0,0,1,0,0,0,1,0],"rhythm6":[1,0,0,1,0,1,0,1,1,0,0,1,1,1,1,0]},
 ];
 
@@ -574,8 +570,8 @@ function initControls() {
     document.getElementById('swing_thumb').addEventListener('dblclick', handleSliderDoubleClick, true);
 
     // tool buttons
-    document.getElementById('play').addEventListener('mousedown', handlePlay, true);
-    document.getElementById('stop').addEventListener('mousedown', handleStop, true);
+    document.getElementById('play').addEventListener('mousedown', handlePlayButton, true);
+    //document.getElementById('stop').addEventListener('mousedown', handleStop, true);
     document.getElementById('save').addEventListener('mousedown', handleSave, true);
     document.getElementById('save_ok').addEventListener('mousedown', handleSaveOk, true);
     document.getElementById('load').addEventListener('mousedown', handleLoad, true);
@@ -606,6 +602,8 @@ function initButtons() {
         }
     }
 }
+
+playButton = document.getElementById('play');
 
 function makeEffectList() {
     var elList = document.getElementById('effectlist');
@@ -648,7 +646,7 @@ function makeLoopList() {
     }
 }
 
-
+var i = 0;
 
 function advanceNote() {
     // Advance time by a 16th note...
@@ -657,7 +655,9 @@ function advanceNote() {
     rhythmIndex++;
     if (rhythmIndex == loopLength) {
         rhythmIndex = 0;
+        i++;
     }
+    //console.log('Current loops: ' + (i - (loopLength - 1)));
 
     // apply swing
     if (rhythmIndex % 2) {
@@ -1181,25 +1181,36 @@ function handleDemoMouseDown(event) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function setrecordingtime() {
+    async function setrecordingtime(BPM) {
         if(isPlaying){handleStop();}
-        console.log("Wait for 3 seconds...");
-        await delay(3000); // Wait for 3 seconds
-        console.log("3 seconds have passed!");
         handlePlay();
-        await delay(4000);
+        toggle_rec();
+        console.log(BPM);
+        await delay(BPM * 100); // Wait for 3 seconds
+        toggle_rec();
         handleStop();
     }
     
+var isPlaying = false;
+
+function handlePlayButton(){
+    if (isPlaying){
+        handleStop()
+    }
+    else{
+        handlePlay()
+    }
+}
 
 function handlePlay(event) {
     noteTime = 0.0;
+    isPlaying = true;
     startTime = context.currentTime + 0.005;
     schedule();
     timerWorker.postMessage("start");
-
     document.getElementById('play').classList.add('playing');
-    document.getElementById('stop').classList.add('playing');
+    document.getElementById('play').innerHTML = 'Stop';
+    //document.getElementById('stop').classList.add('playing');
     if (midiOut) {
         // turn off the play button
         midiOut.send( [0x80, 3, 32] );
@@ -1210,7 +1221,7 @@ function handlePlay(event) {
 
 function handleStop(event) {
     timerWorker.postMessage("stop");
-
+    isPlaying = false;
     var elOld = document.getElementById('LED_' + (rhythmIndex + (loopLength - 2)) % loopLength);
     elOld.src = 'images/LED_off.png';
 
@@ -1219,7 +1230,8 @@ function handleStop(event) {
     rhythmIndex = 0;
 
     document.getElementById('play').classList.remove('playing');
-    document.getElementById('stop').classList.remove('playing');
+    document.getElementById('play').innerHTML = 'Play';
+    //document.getElementById('stop').classList.remove('playing');
     if (midiOut) {
         // light up the play button
         midiOut.send( [0x90, 3, 32] );
@@ -1326,10 +1338,12 @@ let recordedChunks = [];
 function toggle_rec() {
     beat_rec_btn.textContent = !isRecording ? 'Stop Recording' : 'Start Recording';
     if (isRecording) {
+        console.log("Stopped Recording");
         mediaRecorder.stop();
         isRecording = false;
         beat_rec_btn.classList.toggle('beatRecording', isRecording);
     } else {
+        console.log("Began Recording");
         let drumMachineOutput = masterGainNode;
         let destination = context.createMediaStreamDestination();
         drumMachineOutput.connect(destination);
@@ -1349,31 +1363,33 @@ function toggle_rec() {
 
 function handleRecordingStop() {
     const beatPlaybackArea = document.getElementById('beat-playback-area');
-    beatPlaybackArea.innerHTML = '';
+    beatPlaybackArea.innerHTML = ''; // Clear area once
     const clearButton = document.getElementById('clear-beat-rec');
+
+    const mimeType = MediaRecorder.isTypeSupported('audio/mp4; codecs=opus')
+    let blob = new Blob(recordedChunks, { type: mimeType });
     recordedChunks = [];
-    let blob = new Blob(recordedChunks, { type: 'audio/mp3; codecs=opus' });
-    beatRecording = false;
-    
+    isRecording = false;
+
     let audioURL = URL.createObjectURL(blob);
-    beatPlaybackArea.innerHTML = '';
-    
+    console.log(blob);
+
     const playbackContainer = document.createElement('div');
     playbackContainer.className = 'playback-container';
 
-    const beat_rec = document.createElement('beat');
+    const beat_rec = document.createElement('audio');
     beat_rec.controls = true;
     beat_rec.src = audioURL;
     playbackContainer.appendChild(beat_rec);
 
     let downloadLink = document.createElement('a');
     downloadLink.href = audioURL;
-    downloadLink.download = 'recording.mp3';
+    downloadLink.download = 'recording.mp4';
     downloadLink.textContent = 'Download';
     downloadLink.className = 'download-btn';
     playbackContainer.appendChild(downloadLink);
-    
-    beatPlaybackArea.appendChild(playbackContainer); // Ensure it's appended to the DOM
+
+    beatPlaybackArea.appendChild(playbackContainer);
 }
 
 
@@ -1383,46 +1399,21 @@ function handleSaveOk(event) {
 }
 
 function handleLoad(event) {
-    loopsCount = document.getElementById("loopsCount");
-    var newOption = document.createElement("option");
-    
-    newOption.value = "newValue";  // The value that will be sent when the option is selected
-    newOption.text = "New Option"; // The visible text of the option
-    loopsCount.appendChild(newOption);
+    toggleLoadContainer();
     beat_rec_btn = document.getElementById('beat_rec_btn');
     beat_rec_btn.addEventListener("mousedown", toggle_rec);
-    toggleLoadContainer();
+    loopsCount = document.getElementById("loopsCount");
+    loopsCount.addEventListener('change', handleOptionChange);
 }
 
-function handleLoadOk(event) {
-    var elTextarea = document.getElementById('load_textarea');
-    theBeat = JSON.parse(elTextarea.value);
+function handleOptionChange(event) {
+    const selectedValue = event.target.value; // Get the value of the selected option
+    console.log(`Selected option: ${selectedValue}`);
+    var BPM = selectedValue * 10;
 
-    // Set drumkit
-    currentKit = kits[theBeat.kitIndex];
-    document.getElementById('kitname').innerHTML = kitNamePretty[theBeat.kitIndex];
-
-    // Set effect
-    setEffect(theBeat.effectIndex);
-
-    // Change the volume of the convolution effect.
-    setEffectLevel(theBeat);
-
-    // Apply values from sliders
-    sliderSetValue('effect_thumb', theBeat.effectMix);
-    sliderSetValue('kick_thumb', theBeat.kickPitchVal);
-    sliderSetValue('snare_thumb', theBeat.snarePitchVal);
-    sliderSetValue('hihat_thumb', theBeat.hihatPitchVal);
-    sliderSetValue('tom1_thumb', theBeat.tom1PitchVal);
-    sliderSetValue('tom2_thumb', theBeat.tom2PitchVal);
-    sliderSetValue('tom3_thumb', theBeat.tom3PitchVal);
-    sliderSetValue('swing_thumb', theBeat.swingFactor);
-
-    // Clear out the text area post-processing
-    elTextarea.value = '';
-
-    toggleLoadContainer();
-    updateControls();
+    if (isRecording) {toggle_rec();}
+    else{setrecordingtime(BPM);}
+    // You can now use `selectedValue` for any further logic
 }
 
 function handleLoadCancel(event) {
