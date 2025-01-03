@@ -20,7 +20,7 @@ body {
 * {
 	-webkit-user-drag: none;
 	-webkit-user-select: none;
-	cursor: pointer !important;
+	/*cursor: pointer !important;*/
 }
 
 #title {
@@ -204,13 +204,14 @@ body {
 
 #tools {
 	height: 36px;
-	margin-right: 13.8em;
+	margin-right: 21.8em;
 	object-position: center;
 	justify-content: center;
 }
 
 #modeButtons{
 	display: flex;
+	width: 71em;
 }
 
 #paramsleft_container {
@@ -224,6 +225,7 @@ body {
 	margin: 0;
 	border: 0;
 	width: 38px;
+	cursor: pointer;
 }
 
 #kitlabel, #effectlabel, #swinglabel {
@@ -235,24 +237,31 @@ body {
 }
 
 .combo {
-	width: 158px;
+	width: 140px;
 	height: 15px;
-	background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)),
+	/*background: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)),
 		color-stop(2%, rgb(255, 255, 255)), color-stop(5%, rgb(244, 244, 244)), 
-		color-stop(90%, rgb(255, 255, 255)), to(rgb(232, 232, 232)));
-	border-radius: 3px;
-	border: 1px solid rgb(220, 220, 220);
+		color-stop(90%, rgb(255, 255, 255)), to(rgb(232, 232, 232)));*/
+	background: white;
+	border-radius: 2px;
+	/*border: 1px solid rgb(220, 220, 220);*/
 	color: rgb(76, 76, 76);
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
+	text-align: center;
 	padding: 6px;
 	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.combo:hover{
+	background: rgb(220, 220, 220);
 }
 
 .combo img {
 	position: absolute;
-	left: 150px;
+	left: 130px;
 	top: 11px;
 }
 
@@ -265,10 +274,11 @@ body {
 	background-color: rgb(249, 249, 249);
 	border-radius: 2px;
 	border: 1px solid rgb(200, 200, 200);
-	width: 160px;
-	padding: 5px;
+	width: 150px;
+	padding: 0px;
 	display: none;
 	z-index: 1;
+	text-align: center;
 }
 
 #effectlist {
@@ -286,8 +296,7 @@ body {
 }
 
 .combolist li:hover {
-	color: rgb(255, 255, 255);
-	background-color: rgb(38, 47, 104);
+	background: rgb(220, 220, 220);
 }
 
 .slider_container {
@@ -316,6 +325,7 @@ body {
 	position: absolute;
 	left: 10px;
 	top: 0;
+	cursor: pointer;
 }
 
 .slider_label {
@@ -363,34 +373,35 @@ body {
 	vertical-align: top;
 }
 
-#save, #load, #reset{
+#record, #download, #reset{
 	height: 36px;
 	width: 80px;
 	margin-block: 0;
 	font-size: 1.2em;
 }
 
-#save{
+#record{
 	border-radius: 10px 0px 0px 1px;
-	color: dodgerblue;
-	background-color: white;
-}
-
-#save:hover{
-	background-color: dodgerblue;
-	color: white;
-}
-
-#load{
-	border-color: #000814;
-	border-width: 3px;
-	border-radius: 0px 0px 0px 0px;
 	color: mediumseagreen;
 	background-color: white;
 }
 
-#load:hover{
+#record:hover{
 	background-color: mediumseagreen;
+	color: white;
+}
+
+#download{
+	border-color: #000814;
+	width: 92px;
+	border-width: 3px;
+	border-radius: 0px 0px 0px 0px;
+	color: dodgerblue;
+	background-color: white;
+}
+
+#download:hover{
+	background-color: dodgerblue;
 	color: white;
 }
 
@@ -437,26 +448,59 @@ body {
 	animation: pulseShadowRed 2s infinite;
 }
 
+#share{
+	margin-left: 1em;
+	margin-block: 0;
+	border-color: #000814;
+	width: 80px;
+	border-radius: 0px 0px 0px 10px;
+	color: rebeccapurple;
+	background-color: white;
+	font-size: 1.2em;
+}
+
+#share:hover{
+	background-color: rebeccapurple;
+	color: white;
+}
+
+#load{
+	margin-right: 1em;
+	margin-block: 0;
+	border-color: #000814;
+	width: 80px;
+	border-radius: 0px 0px 10px 0px;
+	color: darkorange;
+	background-color: white;
+	font-size: 1.2em;
+}
+
+#load:hover{
+	background-color: darkorange;
+	color: white;
+}
+
+
 #demos_container {
 	margin-left: 10px;
 }
 
-#save_container, #load_container {
+#record_container, #download_container {
 	height: 521px;
 }
 
-#save_container {
+#record_container {
 	grid-gap: 24%;
 	text-align: center;
 	align-content: center;
 }
 
-#save_container h3 {
+#record_container h3 {
 	grid-column-start: 2;
 	grid-column-end: 4;
 }
 
-#save_textarea, #load_textarea {
+#record_textarea, #download_textarea {
 	width: 607px;
 	height: 270px;
 	margin: 20px 40px;
@@ -464,24 +508,76 @@ body {
 	-webkit-user-select: text !important;
 }
 
-#save_ok {
+#record_ok {
 	display: block;
 	margin: 0 auto;
 	padding: 6%;
 }
 
-#load_container{
+#download_container{
 	text-align: center;
 	align-content: center;
 }
 
-#load_buttons {
+#download_buttons {
 	margin: 0 auto;
 	width: 160px;
 }
 
-#load_ok, #load_cancel {
+#download_ok, #download_cancel {
 	margin: 0 3px;
+}
+
+#load_container {
+	height: 521px;
+	grid-gap: 24%;
+	text-align: center;
+	align-content: center;
+}
+
+#load_container h3 {
+	grid-column-start: 2;
+	grid-column-end: 4;
+}
+
+#loadArea{
+	display: inline-grid;
+	place-items: center;
+}
+
+.LAB{
+	grid-row-start: 2;
+	width: 7em;
+	margin-block: 2em;
+	height: 3em;
+	border-radius: 3px;
+	font-size: 1.3em;
+}
+
+#loadButton{
+	color: darkorange;
+	background-color: white;}
+
+#loadButton:hover{
+	background-color: darkorange;
+	color: white;}
+
+#loadCancel{
+	color: red;
+	background-color: white;}
+
+#loadCancel:hover{
+	background-color: red;
+	color: white;}
+
+#load_textarea{
+	font-size: 1.4em;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	height: 8em;
+	width: 18em;
+	border-radius: 10px;
+	resize: none;
 }
 
 #loading {

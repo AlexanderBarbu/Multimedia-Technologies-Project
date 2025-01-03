@@ -169,7 +169,7 @@ var mouseCaptureOffset = 0;
 
 var loopLength = 16;
 var rhythmIndex = 0;
-var kMinTempo = 53;
+var kMinTempo = 52;
 var kMaxTempo = 180;
 var noteTime = 0.0;
 
@@ -543,6 +543,9 @@ function init() {
 
 }
 
+var encodedString = saveTheBeat();
+
+
 function initControls() {
     // Initialize note buttons
     initButtons();
@@ -571,12 +574,18 @@ function initControls() {
 
     // tool buttons
     document.getElementById('play').addEventListener('mousedown', handlePlayButton, true);
-    //document.getElementById('stop').addEventListener('mousedown', handleStop, true);
-    document.getElementById('save').addEventListener('mousedown', handleSave, true);
-    document.getElementById('save_ok').addEventListener('mousedown', handleSaveOk, true);
-    document.getElementById('load').addEventListener('mousedown', handleLoad, true);
-    //document.getElementById('load_ok').addEventListener('mousedown', handleLoadOk, true);
-    document.getElementById('load_cancel').addEventListener('mousedown', handleLoadCancel, true);
+    document.getElementById('record').addEventListener('mousedown', handleRecord, true);
+    document.getElementById('record_ok').addEventListener('mousedown', handleRecordOk, true);
+    document.getElementById('download').addEventListener('mousedown', handleDownload, true);
+    document.getElementById('share').addEventListener('mousedown', function(event) {
+        encodedString = saveTheBeat();
+        handleStop();
+        if (encodedString) {alert("Encoded string:\n" + encodedString);}
+        else {console.error("Failed to save the beat.");}}, true);
+    document.getElementById('loadButton').addEventListener('mousedown', handleLoad, true);
+    document.getElementById('loadCancel').addEventListener('mousedown', handleLoadCancel, true);
+    document.getElementById('load').addEventListener('mousedown', toggleLoadContainer, true);
+    document.getElementById('download_cancel').addEventListener('mousedown', handleDownloadCancel, true);
     document.getElementById('reset').addEventListener('mousedown', handleReset, true);
     document.getElementById('demo1').addEventListener('mousedown', handleDemoMouseDown, true);
     document.getElementById('demo2').addEventListener('mousedown', handleDemoMouseDown, true);
@@ -980,6 +989,7 @@ function handleKitComboMouseDown(event) {
 
 function handleLoopComboMouseDown(event) {
     document.getElementById('loopcombo').classList.toggle('active');
+    console.log(encodedString);
 }
 
 function handleKitMouseDown(event) {
@@ -1240,8 +1250,8 @@ function handleStop(event) {
     }
 }
 
-function handleSave(event) {
-    toggleSaveContainer();
+function handleRecord(event) {
+    toggleRecordContainer();
     document.getElementById('title').innerHTML = 'Audio Recording';
     const mic_btn = document.getElementById('mic');
     const vocalPlaybackArea = document.getElementById('vocal-playback-area');
@@ -1393,13 +1403,13 @@ function handleRecordingStop() {
 }
 
 
-function handleSaveOk(event) {
+function handleRecordOk(event) {
     document.getElementById('title').innerHTML = 'Melodik Drum machine';
-    toggleSaveContainer();
+    toggleRecordContainer();
 }
 
-function handleLoad(event) {
-    toggleLoadContainer();
+function handleDownload(event) {
+    toggleDownloadContainer();
     beat_rec_btn = document.getElementById('beat_rec_btn');
     beat_rec_btn.addEventListener("mousedown", toggle_rec);
     loopsCount = document.getElementById("loopsCount");
@@ -1416,22 +1426,41 @@ function handleOptionChange(event) {
     // You can now use `selectedValue` for any further logic
 }
 
-function handleLoadCancel(event) {
-    toggleLoadContainer();
+function handleDownloadCancel(event) {
+    toggleDownloadContainer();
 }
 
-function toggleSaveContainer() {
+function toggleRecordContainer() {
     document.getElementById('pad').classList.toggle('active');
     document.getElementById('params').classList.toggle('active');
     document.getElementById('tools').classList.toggle('active');
-    document.getElementById('save_container').classList.toggle('active');
+    document.getElementById('record_container').classList.toggle('active');
 }
 
-function toggleLoadContainer() {
+function toggleDownloadContainer() {
     document.getElementById('pad').classList.toggle('active');
     document.getElementById('params').classList.toggle('active');
     document.getElementById('tools').classList.toggle('active');
+    document.getElementById('download_container').classList.toggle('active');
+}
+
+function toggleLoadContainer(){
+    document.getElementById('pad').classList.toggle('active');
+    document.getElementById('params').classList.toggle('active');
+    document.getElementById('tools').classList.toggle('active');
+    document.getElementById('title').innerHTML = 'Beat Loading';
     document.getElementById('load_container').classList.toggle('active');
+}
+
+function handleLoadCancel(){
+    toggleLoadContainer();
+    document.getElementById('title').innerHTML = 'Melodik Drum machine';
+}
+
+function handleLoad(){
+    console.log("Here!")
+    var x = document.getElementById("load_textarea").value;
+    loadTheBeat(x);
 }
 
 function handleReset(event) {
@@ -1550,5 +1579,162 @@ function setFilterQ( Q ) {
         filterNode.Q.value = Q;
 }
 
-// RECORD HANDLING
+function encodeBeatsToString(beatTables, kIn, eIn, tempoIn, extraNumbers) {
+    const totalBeats = beatTables.reduce((sum, table) => sum + table.length, 0);
+    if (totalBeats > 255) throw new Error("Total beats exceeds 255.");
+    if (kIn < 1 || kIn > 15 || eIn < 1 || eIn > 21 || tempoIn < 1 || tempoIn > 33) {
+        throw new Error("Numbers out of range.");
+    }
+    if (extraNumbers.length !== 8 || !extraNumbers.every(n => n >= 1 && n <= 10)) {
+        throw new Error("Extra numbers must be an array of 8 numbers, each between 1 and 10.");
+    }
 
+    const byteArray = [totalBeats]; // Start with total beats
+    let currentByte = 0;
+    let bitsInCurrentByte = 0;
+
+    beatTables.forEach(table => {
+        table.forEach(beat => {
+            if (beat < 0 || beat > 3) throw new Error("Beat value out of range (0-3).");
+
+            currentByte |= (beat << bitsInCurrentByte);
+            bitsInCurrentByte += 2;
+
+            if (bitsInCurrentByte === 8) {
+                byteArray.push(currentByte);
+                currentByte = 0;
+                bitsInCurrentByte = 0;
+            }
+        });
+    });
+
+    if (bitsInCurrentByte > 0) { // Add any remaining bits
+        byteArray.push(currentByte);
+    }
+
+    byteArray.push(kIn - 1, eIn - 1, tempoIn - 1, ...extraNumbers.map(n => n - 1));
+
+    const binaryString = String.fromCharCode(...byteArray);
+    return btoa(binaryString).replace(/=+$/, '');
+}
+
+function decodeBeatsFromString(encodedStr) {
+    const binaryString = atob(encodedStr);
+    const byteArray = Array.from(binaryString, char => char.charCodeAt(0));
+
+    const totalBeats = byteArray.shift();
+    const extraNumbers = byteArray.splice(-8).map(n => n );
+    const tempoIn = byteArray.pop();
+    const eIn = byteArray.pop();
+    const kIn = byteArray.pop();
+
+    const beatTables = [];
+    let bitPos = 0;
+    let byteIndex = 0;
+    
+    
+
+    for (let tableIndex = 0; tableIndex < 6; tableIndex++) {
+        const beatsPerTable = Math.floor(totalBeats / 6);
+        const leftoverBeats = totalBeats % 6;
+        const tableSize = beatsPerTable + (tableIndex < leftoverBeats ? 1 : 0);
+        const table = [];
+
+        for (let i = 0; i < tableSize; i++) {
+            if (bitPos >= totalBeats * 2) break;
+
+            const byte = byteArray[byteIndex];
+            const beat = (byte >> (bitPos % 8)) & 0b11;
+            table.push(beat);
+            bitPos += 2;
+            if (bitPos % 8 === 0) {
+                byteIndex++;
+            }
+        }
+        beatTables.push(table);
+    }
+    return { beatTables, kIn: kIn, eIn, tempoIn, extraNumbers };
+}
+
+function saveTheBeat() {
+    const beatTables = [rhythm1, rhythm2, rhythm3, rhythm4, rhythm5, rhythm6];
+
+    swIndex = Math.min(Math.trunc(theBeat.swingFactor * 10 + 1), 10);
+    t1pVal = Math.min(Math.trunc(theBeat.tom1PitchVal * 10) + 1, 10);
+    t2pVal = Math.min(Math.trunc(theBeat.tom2PitchVal * 10) + 1, 10);
+    t3pVal = Math.min(Math.trunc(theBeat.tom3PitchVal * 10) + 1, 10);
+    hhpVal = Math.min(Math.trunc(theBeat.hihatPitchVal * 10) + 1, 10);
+    spVal = Math.min(Math.trunc(theBeat.snarePitchVal * 10) + 1, 10);
+    kpVal = Math.min(Math.trunc(theBeat.kickPitchVal * 10) + 1, 10);
+    emVal = Math.min(Math.trunc(theBeat.effectMix * 10) + 1, 10);
+
+
+    const extraNumbers = [swIndex, t1pVal, t2pVal, t3pVal, hhpVal, spVal, kpVal, emVal];
+
+    kIn = theBeat.kitIndex + 1;
+    eIn = theBeat.effectIndex + 1;
+    tempoIn = (theBeat.tempo - 52) / 4 + 1;
+
+    return encodeBeatsToString(beatTables, kIn, eIn, tempoIn, extraNumbers);
+}
+    
+function loadTheBeat(encodedStr) {
+    
+    const decodedData = decodeBeatsFromString(encodedStr);
+    console.clear();
+
+    tempoIn = decodedData.tempoIn * 4 + 52;
+
+    console.log("kitIndex: " + decodedData.kIn);
+    console.log("EffectIndex: " + decodedData.eIn);
+    console.log("Tempo: " + tempoIn);
+    
+    theBeat.kitIndex = decodedData.kIn
+    theBeat.effectIndex = decodedData.eIn
+    theBeat.tempo = tempoIn;
+    
+    rhythm_16s[5] = decodedData.beatTables[3];
+    rhythm_16s[4] = decodedData.beatTables[4];
+    rhythm_16s[3] = decodedData.beatTables[5];
+    rhythm_16s[2] = decodedData.beatTables[2];
+    rhythm_16s[1] = decodedData.beatTables[1];
+    rhythm_16s[0] = decodedData.beatTables[0];
+
+    var prev=loopLength;
+    loopLength = (decodedData.beatTables[3]).length; // Update global loopLength
+    hide(prev);
+    document.getElementById('loopname').innerHTML = loopLength; // Update UI display
+    updateRhythms();
+    rhythmIndex = 0; // Reset rhythm index to match new loop length
+    /*
+    YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIFDAACAgIFBQUJ
+    swIndex = decodedData.extraNumbers[0] / 10;
+    t1pVal  = decodedData.extraNumbers[1] / 10;
+    t2pVal  = decodedData.extraNumbers[2] / 10;
+    t3pVal  = decodedData.extraNumbers[3] / 10;
+    hhpVal  = decodedData.extraNumbers[4] / 10;
+    spVal   = decodedData.extraNumbers[5] / 10;
+    kpVal   = decodedData.extraNumbers[6] / 10;
+    emVal   = decodedData.extraNumbers[7] / 10;
+    
+    theBeat.swingFactor = swIndex;
+    theBeat.tom1PitchVal = t1pVal;
+    theBeat.tom2PitchVal = t2pVal;
+    theBeat.tom3PitchVal = t3pVal;
+    theBeat.hihatPitchVal = hhpVal;
+    theBeat.snarePitchVal = spVal;
+    theBeat.kickPitchVal = kpVal;
+    theBeat.effectMix = emVal;
+    
+    updateControls();*/
+    /*console.log("Original Beat Tables:", beatTables);
+    console.log("Encoded String:", encodedStr);
+    console.log("Decoded Data:", decodedData);
+    
+    console.log(JSON.stringify(beatTables) === JSON.stringify(decodedData.beatTables)); // Should now be true
+    console.log(extraNumbers.every((val, index) => val === decodedData.extraNumbers[index])); // Should now be true
+    console.log(decodedData.kIn === 0);
+    console.log(decodedData.eIn === 0);
+    console.log(decodedData.tempoIn === 11);
+    */
+}

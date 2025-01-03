@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="Recording loops now available!">
+    <list default="true" id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="UI Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/drummachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/drummachine.js" afterDir="false" />
@@ -102,7 +102,7 @@
       <workItem from="1735465498886" duration="13109000" />
       <workItem from="1735660184126" duration="5578000" />
       <workItem from="1735826814217" duration="15826000" />
-      <workItem from="1735843178352" duration="34000" />
+      <workItem from="1735843178352" duration="18768000" />
     </task>
     <task id="LOCAL-00001" summary="Added the initial Codebase">
       <option name="closed" value="true" />
@@ -216,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735493640414</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="UI Changes">
+      <option name="closed" value="true" />
+      <created>1735843242145</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735843242145</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +252,7 @@
     <MESSAGE value="done for 23.12.2024" />
     <MESSAGE value="Recording voice now available" />
     <MESSAGE value="Recording loops now available!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recording loops now available!" />
+    <MESSAGE value="UI Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI Changes" />
   </component>
 </project>

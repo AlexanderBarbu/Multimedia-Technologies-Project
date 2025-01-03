@@ -211,7 +211,8 @@
     <!--<img id='play' src='images/btn_play_loading.gif' width='80' height='33'>
     <img id='stop' src='images/btn_stop.png'> -->
     <button id="play" class="button">Play</button>
-    <!-- <img id='save' src='images/btn_save.png'> <img id='load' src='images/btn_load.png'><img id='reset' src='images/btn_reset.png'>--> <button id="save" class="button">Save</button><button id="load" class="button">Load</button><button id="reset" class="button">Reset</button>
+    <!-- <img id='save' src='images/btn_save.png'> <img id='load' src='images/btn_load.png'><img id='reset' src='images/btn_reset.png'>--> <button id="record" class="button">Record</button><button id="download" class="button">Download </button><button id="reset" class="button">Reset</button>
+    <button id="share" class="button">Share</button><button id="load" class="button">Load</button>
     <span id='demos_container'>
             <span class='label' id='demolabel'>Demo</span>
             <img id='demo1' src='images/btn_demo1_loading.gif' width='44' height='33'><img id='demo2' src='images/btn_demo2_loading.gif' width='44' height='33'><img id='demo3' src='images/btn_demo3_loading.gif' width='44' height='33'><img id='demo4' src='images/btn_demo4_loading.gif' width='44' height='33'><img id='demo5' src='images/btn_demo5_loading.gif' width='45' height='33'>
@@ -220,13 +221,13 @@
 </section>
 
 
-<div class='container' id='save_container'>
+<div class='container' id='record_container'>
     <button id="mic">Record</button>
     <div id="vocal-playback-area"></div> <button id="clear" style="display: none;grid-column-start: 2">clear</button>
-    <img id='save_ok' src='images/btn_ok.png'>
+    <img id='record_ok' src='images/btn_ok.png'>
 </div>
 
-<div class='container' id='load_container'>
+<div class='container' id='download_container'>
     <h3>
         Record your Beat
     </h3>
@@ -245,10 +246,20 @@
     </select>
         </div>
     <div id="beat-playback-area"></div><button id="clear-beat-rec" style="display: none;grid-column-start: 2">clear</button>
-    <div id='load_buttons'>
-        <img id='load_cancel' src='images/btn_ok.png'>
+    <div id='download_buttons'>
+        <img id='download_cancel' src='images/btn_ok.png'>
     </div>
 </div>
+
+<div class='container' id='load_container'>
+        <p style="margin-bottom: 5em">Paste the Melodik code you have into the text field down below. The code might look confusing to the untrained eye, but rest assured! Our drum machine knows exactly how to use it to make the music start.</p>
+    <div id="loadArea">
+        <textarea id='load_textarea' spellcheck='false'></textarea>
+    <button id="loadButton" class="LAB">Load</button>
+    <button id="loadCancel" class="LAB">Cancel</button>
+    </div>
+    </div>
+
 <div class='container' id="io">
     Input:
     <select id=midiIn onchange='changeMidiIn();'>
