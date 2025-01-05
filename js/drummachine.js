@@ -577,11 +577,15 @@ function initControls() {
     document.getElementById('record').addEventListener('mousedown', handleRecord, true);
     document.getElementById('record_ok').addEventListener('mousedown', handleRecordOk, true);
     document.getElementById('download').addEventListener('mousedown', handleDownload, true);
-    document.getElementById('share').addEventListener('mousedown', function(event) {
+    /*document.getElementById('share').addEventListener('mousedown', function(event) {
         encodedString = saveTheBeat();
-        handleStop();
-        if (encodedString) {alert("Encoded string:\n" + encodedString);}
-        else {console.error("Failed to save the beat.");}}, true);
+        handlePlayButton();
+        updateControls();
+        if (encodedString) {alert("Copy the :\n" + encodedString);}
+        else {console.error("Failed to save the beat.");}}, true);*/
+    document.getElementById('share').addEventListener('mousedown',toggleShareCode, true);
+    document.getElementById('shareExit').addEventListener('mousedown',toggleShareCode, true);
+    document.getElementById('shareCopy').addEventListener('mousedown',copyShareCode, true);
     document.getElementById('loadButton').addEventListener('mousedown', handleLoad, true);
     document.getElementById('loadCancel').addEventListener('mousedown', handleLoadCancel, true);
     document.getElementById('load').addEventListener('mousedown', toggleLoadContainer, true);
@@ -783,7 +787,6 @@ function playDrum(noteNumber, velocity) {
             console.log("note:0x" + noteNumber.toString(loopLength) );
     }
 }
-
 
 function tempoIncrease() {
     theBeat.tempo = Math.min(kMaxTempo, theBeat.tempo+4);
@@ -989,7 +992,6 @@ function handleKitComboMouseDown(event) {
 
 function handleLoopComboMouseDown(event) {
     document.getElementById('loopcombo').classList.toggle('active');
-    console.log(encodedString);
 }
 
 function handleKitMouseDown(event) {
@@ -997,8 +999,47 @@ function handleKitMouseDown(event) {
     theBeat.kitIndex = index;
     currentKit = kits[index];
     document.getElementById('kitname').innerHTML = kitNamePretty[index];
-
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('input');
+    const sound = document.getElementById('sound');
+    const chooseFileButton = document.getElementById('chooseFileButton');
+    
+    chooseFileButton.addEventListener('click', function() {
+        input.click(); // Trigger the file input's click event
+    });
+    
+    input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        var filename = file.name;
+        if (!file.type.startsWith('audio/')) {
+            alert('Please select an audio file.');
+            return;
+        }
+        
+        sound.style.display = 'none';
+        sound.src = URL.createObjectURL(file);
+
+        sound.addEventListener('loadeddata', () => {
+            console.log('Audio loaded!');
+            sound.style.display = 'block';
+            document.getElementById('upAudioLabel').style.display = 'block';
+            document.getElementById('upAudioLabel').innerHTML = 'Your file: \n' + filename;
+        });
+
+        sound.addEventListener('error', (error) => {
+            console.error('Audio Error:', error);
+            alert("Error loading audio")
+            URL.revokeObjectURL(sound.src);
+            sound.src = "";
+        });
+        sound.onended = () => {
+            URL.revokeObjectURL(sound.src);
+            sound.src = "";
+        };
+    });
+});
 
 function updateRhythms(){
     rhythm1 = getRhythm(1);
@@ -1008,7 +1049,6 @@ function updateRhythms(){
     rhythm5 = getRhythm(5);
     rhythm6 = getRhythm(6);
 }
-
 
 function handleLoopMouseDown(event) {
     var index = loopOptions.indexOf(parseInt(event.target.innerHTML, 10)); // Match clicked value in loopOptions
@@ -1022,7 +1062,6 @@ function handleLoopMouseDown(event) {
         updateControls(); // Refresh UI to reflect changes
     }
 }
-
 
 function handleBodyMouseDown(event) {
     var elKitcombo = document.getElementById('kitcombo');
@@ -1186,7 +1225,6 @@ function handleDemoMouseDown(event) {
         handlePlay();
 }
 
-
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -1195,11 +1233,11 @@ function handleDemoMouseDown(event) {
         if(isPlaying){handleStop();}
         handlePlay();
         toggle_rec();
-        console.log(BPM);
         await delay(BPM * 100); // Wait for 3 seconds
         toggle_rec();
         handleStop();
     }
+    
     
 var isPlaying = false;
 
@@ -1335,6 +1373,7 @@ function handleRecord(event) {
             vocalPlaybackArea.appendChild(playbackContainer);
         });
     }
+    
     function clearRecordings(){
         recordings = [];
         displayRecordings();
@@ -1348,12 +1387,10 @@ let recordedChunks = [];
 function toggle_rec() {
     beat_rec_btn.textContent = !isRecording ? 'Stop Recording' : 'Start Recording';
     if (isRecording) {
-        console.log("Stopped Recording");
         mediaRecorder.stop();
         isRecording = false;
         beat_rec_btn.classList.toggle('beatRecording', isRecording);
     } else {
-        console.log("Began Recording");
         let drumMachineOutput = masterGainNode;
         let destination = context.createMediaStreamDestination();
         drumMachineOutput.connect(destination);
@@ -1370,7 +1407,6 @@ function toggle_rec() {
     }
 }
 
-
 function handleRecordingStop() {
     const beatPlaybackArea = document.getElementById('beat-playback-area');
     beatPlaybackArea.innerHTML = ''; // Clear area once
@@ -1382,7 +1418,6 @@ function handleRecordingStop() {
     isRecording = false;
 
     let audioURL = URL.createObjectURL(blob);
-    console.log(blob);
 
     const playbackContainer = document.createElement('div');
     playbackContainer.className = 'playback-container';
@@ -1402,7 +1437,6 @@ function handleRecordingStop() {
     beatPlaybackArea.appendChild(playbackContainer);
 }
 
-
 function handleRecordOk(event) {
     document.getElementById('title').innerHTML = 'Melodik Drum machine';
     toggleRecordContainer();
@@ -1418,7 +1452,6 @@ function handleDownload(event) {
 
 function handleOptionChange(event) {
     const selectedValue = event.target.value; // Get the value of the selected option
-    console.log(`Selected option: ${selectedValue}`);
     var BPM = selectedValue * 10;
 
     if (isRecording) {toggle_rec();}
@@ -1452,13 +1485,23 @@ function toggleLoadContainer(){
     document.getElementById('load_container').classList.toggle('active');
 }
 
+function toggleShareCode(){
+    document.getElementById('overlay').classList.toggle('active');
+    document.getElementById('code').innerHTML = saveTheBeat();
+}
+
+function copyShareCode(){
+    var copyText = document.getElementById('code').innerHTML;
+    navigator.clipboard.writeText(copyText);
+}
+
 function handleLoadCancel(){
     toggleLoadContainer();
+    updateControls();
     document.getElementById('title').innerHTML = 'Melodik Drum machine';
 }
 
 function handleLoad(){
-    console.log("Here!")
     var x = document.getElementById("load_textarea").value;
     loadTheBeat(x);
 }
@@ -1525,6 +1568,10 @@ function updateControls() {
     document.getElementById('loopname').innerHTML = loopLength;
     document.getElementById('effectname').innerHTML = impulseResponseInfoList[theBeat.effectIndex].name;
     document.getElementById('tempo').innerHTML = theBeat.tempo;
+    refreshSliders();
+}
+
+function refreshSliders(){
     sliderSetPosition('swing_thumb', theBeat.swingFactor);
     sliderSetPosition('effect_thumb', theBeat.effectMix);
     sliderSetPosition('kick_thumb', theBeat.kickPitchVal);
@@ -1533,8 +1580,7 @@ function updateControls() {
     sliderSetPosition('tom1_thumb', theBeat.tom1PitchVal);
     sliderSetPosition('tom2_thumb', theBeat.tom2PitchVal);
     sliderSetPosition('tom3_thumb', theBeat.tom3PitchVal);
-}
-
+    }
 
 function drawNote(draw, xindex, yindex) {
     var elButton = document.getElementById(instruments[yindex] + '_' + xindex);
@@ -1653,7 +1699,7 @@ function decodeBeatsFromString(encodedStr) {
         }
         beatTables.push(table);
     }
-    return { beatTables, kIn: kIn, eIn, tempoIn, extraNumbers };
+    return { beatTables, kIn, eIn, tempoIn, extraNumbers };
 }
 
 function saveTheBeat() {
@@ -1681,21 +1727,15 @@ function saveTheBeat() {
 function loadTheBeat(encodedStr) {
     
     const decodedData = decodeBeatsFromString(encodedStr);
-    console.clear();
-
-    tempoIn = decodedData.tempoIn * 4 + 52;
-
-    console.log("kitIndex: " + decodedData.kIn);
-    console.log("EffectIndex: " + decodedData.eIn);
-    console.log("Tempo: " + tempoIn);
     
-    theBeat.kitIndex = decodedData.kIn
+    theBeat.kitIndex = decodedData.kIn;
+    currentKit = kits[decodedData.kIn];
     theBeat.effectIndex = decodedData.eIn
-    theBeat.tempo = tempoIn;
+    theBeat.tempo = decodedData.tempoIn * 4 + 52;
     
-    rhythm_16s[5] = decodedData.beatTables[3];
+    rhythm_16s[5] = decodedData.beatTables[5];
     rhythm_16s[4] = decodedData.beatTables[4];
-    rhythm_16s[3] = decodedData.beatTables[5];
+    rhythm_16s[3] = decodedData.beatTables[3];
     rhythm_16s[2] = decodedData.beatTables[2];
     rhythm_16s[1] = decodedData.beatTables[1];
     rhythm_16s[0] = decodedData.beatTables[0];
@@ -1704,10 +1744,10 @@ function loadTheBeat(encodedStr) {
     loopLength = (decodedData.beatTables[3]).length; // Update global loopLength
     hide(prev);
     document.getElementById('loopname').innerHTML = loopLength; // Update UI display
+    refreshSliders();
     updateRhythms();
-    rhythmIndex = 0; // Reset rhythm index to match new loop length
-    /*
-    YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIFDAACAgIFBQUJ
+    updateControls();
+    rhythmIndex = 0;
     swIndex = decodedData.extraNumbers[0] / 10;
     t1pVal  = decodedData.extraNumbers[1] / 10;
     t2pVal  = decodedData.extraNumbers[2] / 10;
@@ -1716,25 +1756,20 @@ function loadTheBeat(encodedStr) {
     spVal   = decodedData.extraNumbers[5] / 10;
     kpVal   = decodedData.extraNumbers[6] / 10;
     emVal   = decodedData.extraNumbers[7] / 10;
+    refreshSliders();
+    updateRhythms();
+    updateControls();
     
-    theBeat.swingFactor = swIndex;
-    theBeat.tom1PitchVal = t1pVal;
-    theBeat.tom2PitchVal = t2pVal;
-    theBeat.tom3PitchVal = t3pVal;
-    theBeat.hihatPitchVal = hhpVal;
-    theBeat.snarePitchVal = spVal;
-    theBeat.kickPitchVal = kpVal;
-    theBeat.effectMix = emVal;
+    sliderSetValue('swing_thumb', swIndex);
+    sliderSetValue('tom1_thumb', t1pVal);
+    sliderSetValue('tom2_thumb', t2pVal);
+    sliderSetValue('tom3_thumb', t3pVal);
+    sliderSetValue('hihat_thumb', hhpVal);
+    sliderSetValue('snare_thumb', spVal);
+    sliderSetValue('kick_thumb', kpVal);
+    sliderSetValue('effect_thumb', emVal);
     
-    updateControls();*/
-    /*console.log("Original Beat Tables:", beatTables);
-    console.log("Encoded String:", encodedStr);
-    console.log("Decoded Data:", decodedData);
-    
-    console.log(JSON.stringify(beatTables) === JSON.stringify(decodedData.beatTables)); // Should now be true
-    console.log(extraNumbers.every((val, index) => val === decodedData.extraNumbers[index])); // Should now be true
-    console.log(decodedData.kIn === 0);
-    console.log(decodedData.eIn === 0);
-    console.log(decodedData.tempoIn === 11);
-    */
+    refreshSliders();
+    updateRhythms();
+    updateControls();
 }

@@ -8,8 +8,8 @@
 }
 /* Styles for Drum Machine Demo */
 body {
-	background: linear-gradient(0deg, rgba(0,8,20,1) 0%, rgba(0,29,61,1) 65%, rgba(0,53,102,1) 100%);
-	/*background-color: #8ACE00;*/
+	/*background: linear-gradient(0deg, rgba(0,8,20,1) 0%, rgba(0,29,61,1) 65%, rgba(0,53,102,1) 100%);*/
+	background: #222428;
 	color: var(--WritingColor);
 	font-family: 'Droid Sans', Arial, sans-serif;
 	font-size: 13px;
@@ -43,7 +43,6 @@ body {
 	width: 900px;
 	margin: 0px auto;
 	padding: 20px 20px 15px 20px;
-  -webkit-box-shadow:0px 2px 3px rgba(0, 0, 0, 0.2);
   display: none;
 }
 
@@ -62,16 +61,19 @@ body {
 }
 
 
-	button {
-			color: white;
-			padding: 5px 10px;
-			border: none;
-			border-radius: 4px;
-			margin-block: 4em;
-			align-content: center;
-			cursor: pointer;
-			text-decoration: none;
+button {
+	color: black;
+	padding: 5px 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+	margin-block: 4em;
+	align-content: center;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
 }
+
 
 @keyframes pulseShadowRed {
 		0% {box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);}
@@ -103,11 +105,13 @@ body {
 		grid-row-start: 1;
 		height: 4em;
 		color: #6c6fd1;
+		border-width: 0;
 		background-color: white;
 	}
 	#mic:hover{
 		background-color: #6c6fd1;
 		color: white;
+		border-width: 0;
 		animation: pulseShadowPurple 2s infinite;
 	}
 
@@ -118,10 +122,10 @@ body {
 	#mic.isRecording {
 		background-color: red;
 		color: white;
+		border-width: 0;
 		animation: pulseShadowRed 2s infinite;
 	}
-	audio {
-	}
+	
 	.playback-container {
 		margin-bottom: 10px; /* Space between players */
 		display: flex;
@@ -151,17 +155,38 @@ body {
 	grid-row-start: 1;
 	height: 4em;
 	color: #6c6fd1;
+	border-width: 0;
 	background-color: white;
 }
 #beat_rec_btn:hover {
 	background-color: #6c6fd1;
 	color: white;
+	border-width: 0;
 	animation: pulseShadowPurple 2s infinite;
 }
 #beat_rec_btn.beatRecording{
 	background-color: red;
 	color: white;
 	animation: pulseShadowRed 2s infinite;
+}
+
+#song-upload-area{
+	float: right;
+	padding-block: 1.7em;
+}
+
+#chooseFileButton{
+	height: 4em;
+	margin-left: 8em;
+	color: #6c6fd1;
+	border-width: 0;
+	background-color: white;
+}
+
+#chooseFileButton:hover{
+	background-color: #6c6fd1;
+	color: white;
+	border-width: 0;
 }
 
 #LED_row img {
@@ -323,10 +348,20 @@ body {
 
 .slider_thumb {
 	position: absolute;
-	left: 10px;
-	top: 0;
+	left: 13px;
+	width: 2em;
+	height: 2.5em;
 	cursor: pointer;
+	border-width: 0;
 }
+#swing_thumb{background-color: #70E000}
+#effect_thumb{background-color: #9EF01A;}
+#kick_thumb{background-color: #FFFF00;}
+#snare_thumb{background-color: orange;}
+#hihat_thumb{background-color: #FF7F00;}
+#tom1_thumb{background-color: #FF5500;}
+#tom2_thumb{background-color: #FF2B00;}
+#tom3_thumb{background-color: #FF0000;}
 
 .slider_label {
 	text-align: center;
@@ -358,11 +393,6 @@ body {
 	font-size: 14px;
 }
 
-#tempoinc, #tempodec {
-	position: relative;
-	top: 3px;
-	left: 1px;
-}
 
 .vrule {
 	width: 1px;
@@ -382,43 +412,45 @@ body {
 
 #record{
 	border-radius: 10px 0px 0px 1px;
-	color: mediumseagreen;
-	background-color: white;
+	color: #70E000;
+	background-color: black;
+	border-color: #70E000;
 }
 
 #record:hover{
-	background-color: mediumseagreen;
-	color: white;
+	background-color: #70E000;
+	color: black;
 }
 
 #download{
-	border-color: #000814;
+	border-color: #9EF01A;
 	width: 92px;
-	border-width: 3px;
 	border-radius: 0px 0px 0px 0px;
-	color: dodgerblue;
-	background-color: white;
+	color: #9EF01A;
+	background-color: black;
 }
 
 #download:hover{
-	background-color: dodgerblue;
-	color: white;
+	background-color: #9EF01A;
+	color: black;
 }
 
 #reset{
 	border-radius: 0px 1px 10px 0px;
-	color: slateblue;
-	background-color: white;
+	border-color: #9EF01A ;
+	color: #CCFF33;
+	background-color: black;
 }
 
 #reset:hover{
-	color: white;
-	background-color: slateblue;
+	color: black;
+	background-color: #CCFF33;
 }
 
 #play {
-	background-color: white;
-	color: #4CAF50;
+	background-color: black;
+	color: #38B000;
+	border-color: #38B000;
 	cursor: pointer;
 	margin-right: 12px;
 	height: 36px;
@@ -429,14 +461,15 @@ body {
 }
 
 #play:hover {
-	background-color: #45a049;
-	color: white;
+	background-color: #38B000;
+	color: black;
 	animation: pulseShadowGreen 2s infinite;
 }
 
 #play.playing {
 	display: inline;
-	background-color: white;
+	background-color: black;
+	border-color: red;
 	color: red;
 }
 
@@ -444,40 +477,40 @@ body {
 #play.playing:hover{
 	display: inline;
 	background-color: red;
-	color: white;
+	color: black;
 	animation: pulseShadowRed 2s infinite;
 }
 
 #share{
 	margin-left: 1em;
 	margin-block: 0;
-	border-color: #000814;
 	width: 80px;
 	border-radius: 0px 0px 0px 10px;
-	color: rebeccapurple;
-	background-color: white;
+	color: #FFFF00;
+	border-color: #FFFF00;
+	background-color: black;
 	font-size: 1.2em;
 }
 
 #share:hover{
-	background-color: rebeccapurple;
-	color: white;
+	background-color: #FFFF00;
+	color: black;
 }
 
 #load{
 	margin-right: 1em;
 	margin-block: 0;
-	border-color: #000814;
 	width: 80px;
-	border-radius: 0px 0px 10px 0px;
-	color: darkorange;
-	background-color: white;
+	border-radius: 0px 10px 0px 0px;
+	color: orange;
+	background-color: black;
+	border-color: orange;
 	font-size: 1.2em;
 }
 
 #load:hover{
-	background-color: darkorange;
-	color: white;
+	background-color: orange;
+	color: black;
 }
 
 
@@ -511,7 +544,45 @@ body {
 #record_ok {
 	display: block;
 	margin: 0 auto;
-	padding: 6%;
+}
+
+.tempo-button{
+	margin-block: 0;
+	width: 2em;
+	height: 1.7em;
+	font-size: 1.8em;
+	background-color: lightgray;
+	color: black;
+	border-width: 0;
+}
+
+.tempo-button:hover{
+	background-color: grey;
+	color: black;
+	border-width: 0;
+}
+
+#tempoinc{
+	border-radius: 0 3px 3px 0;
+}
+
+#tempodec{
+	border-radius: 3px 0px 0px 3px;
+}
+
+.exit-button{
+	padding-inline: 2em;
+	padding-block: 1em;
+	font-size: 0.9em;
+	background-color: darkgrey;
+	color: black;
+	border-width: 0;
+}
+
+.exit-button:hover{
+	background-color: gray;
+	color: black;
+	border-width: 0;
 }
 
 #download_container{
@@ -556,19 +627,19 @@ body {
 
 #loadButton{
 	color: darkorange;
-	background-color: white;}
+	background-color: black;}
 
 #loadButton:hover{
 	background-color: darkorange;
-	color: white;}
+	color: black;}
 
 #loadCancel{
 	color: red;
-	background-color: white;}
+	background-color: black;}
 
 #loadCancel:hover{
 	background-color: red;
-	color: white;}
+	color: black;}
 
 #load_textarea{
 	font-size: 1.4em;
@@ -612,3 +683,128 @@ body {
 
 img.preload { display: none; }
 #MIDIPlugin { visibility: hidden; }
+
+.demo_button{
+	margin-block: 0;
+	height: 36px;
+	width: 60px;
+	border-radius: 0 0 0 0;
+	background-color: black;
+	color: white;
+	font-size: 1em;
+	padding: 0;
+	font-weight: bold;
+	border-style: solid;
+}
+
+.demo_button:hover{
+	background-color: white;
+	color: black;
+	height: 36px;
+	width: 60px;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+#demo1{border-radius: 10px 0 0 0px;color: orange;border-color:orange}
+#demo1:hover{color: black;background: orange;}
+
+#demo2{color: #FF7F00;border-color: #FF7F00}
+#demo2:hover{color: black;background: #FF7F00;}
+
+#demo3{color: #FF5500;border-color: #FF5500;}
+#demo3:hover{color: black;background: #FF5500;}
+
+#demo4{color: #FF2B00;border-color: #FF2B00}
+#demo4:hover{color: black;background: #FF2B00;}
+
+#demo5{border-radius: 0px 0px 10px 0px;color: #FF0000;border-color: #FF0000}
+#demo5:hover{color: black;background: #FF0000;}
+
+
+
+
+
+#overlay {
+	position: fixed; /* Sit on top of the page content */
+	width: 100%; /* Full width (cover the whole page) */
+	height: 100%; /* Full height (cover the whole page) */
+	justify-content: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+	z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+	backdrop-filter: blur(2px);
+}
+
+#overlay_display{
+	background-color: cadetblue;
+	border-radius: 17px;
+	display: grid;
+	text-align: center;
+	align-items: center; 
+	-webkit-padding-start: 10px;
+	position: absolute;
+	padding-inline: 1em;
+	padding-block: 1em;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#overlay_display h2{
+	grid-row-start: 1;
+	background: linear-gradient(to bottom, #fdf68c 0%, #f4cd2a 58%, #eda323 80%, #d28d0d 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: #fff;
+}
+
+#overlay_display p{
+	grid-row-start: 2;
+}
+
+#code{
+	margin-bottom: 2em;
+}
+
+.shareButton{
+	width: 8em;
+	height: 3em;
+	margin-inline: 2em;
+	margin-block: 2em;
+	font-size: 1.1em;
+}
+
+#shareButtons{
+	grid-row-start: 4;
+	grid-column-start: 1;
+}
+
+#shareCopy{
+
+	border-radius: 2px 10px 2px 10px;
+	background-color: black;
+	color: rebeccapurple;
+}
+
+#shareCopy:hover{
+	background-color: rebeccapurple;
+	color: black;
+}
+
+#shareExit{
+	border-radius: 10px 2px 10px 2px;
+	background-color: black;
+	color: red;
+}
+
+#shareExit:hover{
+	background-color: red;
+	color: black;
+}
+
+
+

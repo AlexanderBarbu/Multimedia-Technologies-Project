@@ -86,10 +86,8 @@
     </div>
 </section>
 
-
 <section class='container active' id='params'>
     <div id='paramsleft_container'>
-
         <div id='loopcombo_container'>     <!-- THE ONE KIT SELECTOR   -->
             <span class='label' id='looplabel'>Bars</span>
             <div class='combo' id='loopcombo'>
@@ -125,14 +123,16 @@
             <div id='tempodisplay'>
                 <span id='tempo'></span>&nbsp;<span id='bpm'>bpm</span>
             </div>
-            <img id='tempodec' src='images/tempo_dec.png'><img id='tempoinc' src='images/tempo_inc.png'>
+            <!--<img id='tempodec' src='images/tempo_dec.png'><img id='tempoinc' src='images/tempo_inc.png'>-->
+            <button class="tempo-button" id='tempodec'>-</button><button class="tempo-button" id='tempoinc'>+</button>
         </div>
 
         <div class='slider_container' id='swing_container'>
             <span class='label' id='swinglabel'>Swing</span>
             <div class='slider_groove'>
                 <img class='slider_track' src='images/sliderh_track.png'>
-                <img class='slider_thumb' id='swing_thumb' src='images/sliderh_thumb.png'>
+               <!-- <img class='slider_thumb' id='swing_thumb' src='images/sliderh_thumb.png'> -->
+                <button class='slider_thumb' id='swing_thumb' style="margin-block: 0"></button>
             </div>
         </div>
 
@@ -142,7 +142,8 @@
     <div class='slider_container' id='effect_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='effect_thumb' src='images/slider_thumb.png'>
+            <!-- <img class='slider_thumb' id='effect_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='effect_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Effect Level
@@ -152,7 +153,8 @@
     <div class='slider_container' id='kick_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='kick_thumb' src='images/slider_thumb.png'>
+            <!-- <img class='slider_thumb' id='kick_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='kick_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Kick Pitch
@@ -161,7 +163,8 @@
     <div class='slider_container' id='snare_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='snare_thumb' src='images/slider_thumb.png'>
+            <!--<img class='slider_thumb' id='snare_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='snare_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Snare Pitch
@@ -170,7 +173,8 @@
     <div class='slider_container' id='hihat_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='hihat_thumb' src='images/slider_thumb.png'>
+            <!--<img class='slider_thumb' id='hihat_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='hihat_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Hi-Hat Pitch
@@ -179,7 +183,8 @@
     <div class='slider_container' id='tom1_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='tom1_thumb' src='images/slider_thumb.png'>
+            <!-- <img class='slider_thumb' id='tom1_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='tom1_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Tom 1 Pitch
@@ -188,7 +193,8 @@
     <div class='slider_container' id='tom2_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='tom2_thumb' src='images/slider_thumb.png'>
+            <!-- <img class='slider_thumb' id='tom2_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='tom2_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Tom 2 Pitch
@@ -197,7 +203,8 @@
     <div class='slider_container' id='tom3_container'>
         <div class='slider_groove'>
             <img class='slider_track' src='images/slider_track.png'>
-            <img class='slider_thumb' id='tom3_thumb' src='images/slider_thumb.png'>
+            <!-- <img class='slider_thumb' id='tom3_thumb' src='images/slider_thumb.png'> -->
+            <button class='slider_thumb' id='tom3_thumb' style="margin-block: 0"></button>
         </div>
         <div class='slider_label'>
             Tom 3 Pitch
@@ -214,17 +221,22 @@
     <!-- <img id='save' src='images/btn_save.png'> <img id='load' src='images/btn_load.png'><img id='reset' src='images/btn_reset.png'>--> <button id="record" class="button">Record</button><button id="download" class="button">Download </button><button id="reset" class="button">Reset</button>
     <button id="share" class="button">Share</button><button id="load" class="button">Load</button>
     <span id='demos_container'>
-            <span class='label' id='demolabel'>Demo</span>
-            <img id='demo1' src='images/btn_demo1_loading.gif' width='44' height='33'><img id='demo2' src='images/btn_demo2_loading.gif' width='44' height='33'><img id='demo3' src='images/btn_demo3_loading.gif' width='44' height='33'><img id='demo4' src='images/btn_demo4_loading.gif' width='44' height='33'><img id='demo5' src='images/btn_demo5_loading.gif' width='45' height='33'>
+        <!--     <span class='label' id='demolabel'>Demo</span>
+           <img id='demo1' src='images/btn_demo1_loading.gif' width='44' height='33'><img id='demo2' src='images/btn_demo2_loading.gif' width='44' height='33'><img id='demo3' src='images/btn_demo3_loading.gif' width='44' height='33'><img id='demo4' src='images/btn_demo4_loading.gif' width='44' height='33'><img id='demo5' src='images/btn_demo5_loading.gif' width='45' height='33'> -->
+        <button class="demo_button" id="demo1">1</button><button class="demo_button" id="demo2">2</button><button class="demo_button" id="demo3">3</button><button class="demo_button" id="demo4">4</button><button class="demo_button" id="demo5">5</button>
         </span>
     </div>
 </section>
 
 
 <div class='container' id='record_container'>
+    <p>Here you can record yourself performing over the music. Moreover, you can upload a song to overlay as well! To do this, just click on 'Choose audio file'.</p>
     <button id="mic">Record</button>
+    <button id="chooseFileButton">Choose Audio File</button>
+    <div id="song-upload-area"><input type="file" id="input" accept="audio/*" style="display: none;"><p id="upAudioLabel" style="display: none;">Uploaded audio:</p><audio id="sound" style="display: none;" controls></audio></div>
     <div id="vocal-playback-area"></div> <button id="clear" style="display: none;grid-column-start: 2">clear</button>
-    <img id='record_ok' src='images/btn_ok.png'>
+    <!-- <img id='record_ok' src='images/btn_ok.png'>-->
+    <button class='exit-button' id="record_ok">Exit</button>
 </div>
 
 <div class='container' id='download_container'>
@@ -247,7 +259,8 @@
         </div>
     <div id="beat-playback-area"></div><button id="clear-beat-rec" style="display: none;grid-column-start: 2">clear</button>
     <div id='download_buttons'>
-        <img id='download_cancel' src='images/btn_ok.png'>
+        <!-- <img id='download_cancel' src='images/btn_ok.png'> -->
+        <button class='exit-button' id="download_cancel">Exit</button>
     </div>
 </div>
 
@@ -269,6 +282,14 @@
     <select id=midiOut onchange='changeMidiOut();'>
         <option value="">Not connected</option>
     </select>
+</div>
+
+<div class="container" id="overlay">
+    <div id='overlay_display'>
+        <p style="margin-bottom: 2em;">You can share your Melodik beat by copying the code above. Just press 'Copy'!</p>
+        <h2 id="code">Oops! Something has gone wrong here...</h2>
+        <div id="shareButtons"><button class="shareButton" id='shareCopy'>Copy</button><button class='shareButton' id='shareExit'>Exit</button></div>
+    </div>
 </div>
 
 <div id="MIDIPlugin"> </div>
