@@ -98,6 +98,12 @@ function hide(prev){
             document.getElementById("HiHat_" + i).toggleAttribute("hidden");
             document.getElementById("Snare_" + i).toggleAttribute("hidden");
             document.getElementById("Kick_" + i).toggleAttribute("hidden");
+            /*document.getElementById("Tom1_" + i).style.display='none';
+            document.getElementById("Tom2_" + i).style.display='none';
+            document.getElementById("Tom3_" + i).style.display='none';
+            document.getElementById("HiHat_" + i).style.display='none';
+            document.getElementById("Snare_" + i).style.display='none';
+            document.getElementById("Kick_" + i).style.display='none';*/
             document.getElementById("LED_" + i).toggleAttribute("hidden");
         }
     }
@@ -109,6 +115,13 @@ function hide(prev){
             document.getElementById("HiHat_" + i).toggleAttribute("hidden");
             document.getElementById("Snare_" + i).toggleAttribute("hidden");
             document.getElementById("Kick_" + i).toggleAttribute("hidden");
+            /*document.getElementById("LED_" + i).toggleAttribute("hidden");
+            document.getElementById("Tom1_" + i).style.display='';
+            document.getElementById("Tom2_" + i).style.display='';
+            document.getElementById("Tom3_" + i).style.display='';
+            document.getElementById("HiHat_" + i).style.display='';
+            document.getElementById("Snare_" + i).style.display='';
+            document.getElementById("Kick_" + i).style.display='';*/
             document.getElementById("LED_" + i).toggleAttribute("hidden");
         }
     }

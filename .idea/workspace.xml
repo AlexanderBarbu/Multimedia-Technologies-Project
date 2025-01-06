@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="Load almost Ready">
+    <list default="true" id="d18a1370-a4cc-4572-a9dc-8830e58464b8" name="Changes" comment="Nearly done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/button_half.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/button_half.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/button_off.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/button_off.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/button_on.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/button_on.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/untitled folder/button_half.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/untitled folder/button_off.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/untitled folder/button_on.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/LED_off.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/LED_off.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/LED_on.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/LED_on.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/untitled folder/LED_off.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/untitled folder/LED_on.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/js/drummachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/drummachine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style/drummachine.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/drummachine.css" afterDir="false" />
     </list>
@@ -108,7 +105,10 @@
       <workItem from="1735465498886" duration="13109000" />
       <workItem from="1735660184126" duration="5578000" />
       <workItem from="1735826814217" duration="15826000" />
-      <workItem from="1735843178352" duration="46695000" />
+      <workItem from="1735843178352" duration="46717000" />
+      <workItem from="1736170354675" duration="3316000" />
+      <workItem from="1736173690756" duration="1177000" />
+      <workItem from="1736174895859" duration="2928000" />
     </task>
     <task id="LOCAL-00001" summary="Added the initial Codebase">
       <option name="closed" value="true" />
@@ -238,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735930683669</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Nearly done">
+      <option name="closed" value="true" />
+      <created>1736095332863</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1736095332863</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +276,7 @@
     <MESSAGE value="Recording loops now available!" />
     <MESSAGE value="UI Changes" />
     <MESSAGE value="Load almost Ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="Load almost Ready" />
+    <MESSAGE value="Nearly done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nearly done" />
   </component>
 </project>

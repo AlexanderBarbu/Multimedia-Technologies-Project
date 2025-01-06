@@ -9,8 +9,8 @@
 /* Styles for Drum Machine Demo */
 body {
 	/*background: linear-gradient(0deg, rgba(0,8,20,1) 0%, rgba(0,29,61,1) 65%, rgba(0,53,102,1) 100%);*/
-	background: #222428;
-	color: var(--WritingColor);
+	background: #000420;
+	color: #EEEEEE;
 	font-family: 'Droid Sans', Arial, sans-serif;
 	font-size: 13px;
 	padding-top: 10%;
@@ -104,12 +104,12 @@ button {
 		grid-column-start: 1;
 		grid-row-start: 1;
 		height: 4em;
-		color: #6c6fd1;
+		color: #42A5F5;
 		border-width: 0;
 		background-color: white;
 	}
 	#mic:hover{
-		background-color: #6c6fd1;
+		background: linear-gradient(145deg, #42A5F5, #0076d3);
 		color: white;
 		border-width: 0;
 		animation: pulseShadowPurple 2s infinite;
@@ -154,16 +154,18 @@ button {
 	grid-column-start: 1;
 	grid-row-start: 1;
 	height: 4em;
-	color: #6c6fd1;
+	color: #0076d3;
 	border-width: 0;
 	background-color: white;
 }
 #beat_rec_btn:hover {
-	background-color: #6c6fd1;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: white;
 	border-width: 0;
 	animation: pulseShadowPurple 2s infinite;
 }
+
+
 #beat_rec_btn.beatRecording{
 	background-color: red;
 	color: white;
@@ -178,19 +180,19 @@ button {
 #chooseFileButton{
 	height: 4em;
 	margin-left: 8em;
-	color: #6c6fd1;
+	color: #42A5F5;
 	border-width: 0;
 	background-color: white;
 }
 
 #chooseFileButton:hover{
-	background-color: #6c6fd1;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: white;
 	border-width: 0;
 }
 
 #LED_row img {
-	width: 38px;
+	width: 35px;
 }
 
 .label {
@@ -249,10 +251,10 @@ button {
 	padding: 0;
 	margin: 0;
 	border: 0;
-	width: 38px;
 	cursor: pointer;
+	width: 35px;
+	height: 35px;
 }
-
 #kitlabel, #effectlabel, #swinglabel {
 	top: 6px;
 }
@@ -281,7 +283,7 @@ button {
 }
 
 .combo:hover{
-	background: rgb(220, 220, 220);
+	background: rgb(208, 233, 255);
 }
 
 .combo img {
@@ -321,7 +323,7 @@ button {
 }
 
 .combolist li:hover {
-	background: rgb(220, 220, 220);
+	background: rgb(208, 233, 255);
 }
 
 .slider_container {
@@ -346,6 +348,10 @@ button {
 	position: relative;
 }
 
+.slider_track{
+	opacity: 10%;
+}
+
 .slider_thumb {
 	position: absolute;
 	left: 13px;
@@ -353,15 +359,31 @@ button {
 	height: 2.5em;
 	cursor: pointer;
 	border-width: 0;
+	border-radius: 0.5em; /* Rounded edges for a button-like look */
+	transition: transform 0.1s ease-in; /* Smooth scaling effect */
 }
-#swing_thumb{background-color: #70E000}
-#effect_thumb{background-color: #9EF01A;}
-#kick_thumb{background-color: #FFFF00;}
-#snare_thumb{background-color: orange;}
-#hihat_thumb{background-color: #FF7F00;}
-#tom1_thumb{background-color: #FF5500;}
-#tom2_thumb{background-color: #FF2B00;}
-#tom3_thumb{background-color: #FF0000;}
+
+.slider_thumb:hover {
+	transform: scale(1.1); /* Scales the element to 1.1 times its size */
+}
+
+/* Add gradients for each thumb */
+#swing_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Deep green to bright lime */}
+
+#effect_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Fresh green to lemon yellow */}
+
+#kick_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Golden yellow to bright yellow */}
+
+#snare_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Dark orange to vivid orange */}
+
+#hihat_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Red-orange to coral */}
+
+#tom1_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Tomato red to light coral */}
+
+#tom2_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Bright red to tomato red */}
+
+#tom3_thumb {background: linear-gradient(145deg, #42A5F5, #0076d3); /* Bold red to golden yellow */}
+
 
 .slider_label {
 	text-align: center;
@@ -403,54 +425,54 @@ button {
 	vertical-align: top;
 }
 
-#record, #download, #reset{
+#record, #download, #reset, #share, #load{
 	height: 36px;
 	width: 80px;
+	border-width: 0;
+	background-color: #000420;
 	margin-block: 0;
 	font-size: 1.2em;
 }
 
 #record{
 	border-radius: 10px 0px 0px 1px;
-	color: #70E000;
-	background-color: black;
-	border-color: #70E000;
+	color: #42A5F5;
+	border-color: #42A5F5;
 }
 
 #record:hover{
-	background-color: #70E000;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
 }
 
 #download{
-	border-color: #9EF01A;
+	border-image: linear-gradient(145deg, #42A5F5, #0076d3) 1;
 	width: 92px;
 	border-radius: 0px 0px 0px 0px;
-	color: #9EF01A;
-	background-color: black;
+	color: #42A5F5;
 }
 
 #download:hover{
-	background-color: #9EF01A;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
 }
 
 #reset{
 	border-radius: 0px 1px 10px 0px;
-	border-color: #9EF01A ;
-	color: #CCFF33;
-	background-color: black;
+	border-color: #42A5F5;
+	color: #42A5F5;
 }
 
 #reset:hover{
 	color: black;
-	background-color: #CCFF33;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 }
 
 #play {
-	background-color: black;
-	color: #38B000;
-	border-color: #38B000;
+	background-color: #000420;
+	color: #42A5F5;
+	/*border-color: #42A5F5;*/
+	border-width: 0;
 	cursor: pointer;
 	margin-right: 12px;
 	height: 36px;
@@ -461,56 +483,61 @@ button {
 }
 
 #play:hover {
-	background-color: #38B000;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
+	border-width: 0;
 	animation: pulseShadowGreen 2s infinite;
 }
 
 #play.playing {
 	display: inline;
 	background-color: black;
-	border-color: red;
-	color: red;
+	color: #42A5F5;
+	border-width: 0;
 }
 
 
 #play.playing:hover{
 	display: inline;
-	background-color: red;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
-	animation: pulseShadowRed 2s infinite;
+	animation: pulseShadowGreen 2s infinite;
+	border-width: 0;
 }
 
 #share{
 	margin-left: 1em;
 	margin-block: 0;
 	width: 80px;
+	border-width: 0;
 	border-radius: 0px 0px 0px 10px;
-	color: #FFFF00;
-	border-color: #FFFF00;
-	background-color: black;
+	color: #42A5F5;
+	border-color: #42A5F5;
 	font-size: 1.2em;
+	
 }
 
 #share:hover{
-	background-color: #FFFF00;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
+	border-width: 0;
 }
 
 #load{
 	margin-right: 1em;
 	margin-block: 0;
 	width: 80px;
+	border-width: 0;
 	border-radius: 0px 10px 0px 0px;
-	color: orange;
-	background-color: black;
-	border-color: orange;
+	color: #42A5F5;
+	border-color: #42A5F5;
 	font-size: 1.2em;
 }
 
 #load:hover{
-	background-color: orange;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
+	border-width: 0;
 }
 
 
@@ -551,23 +578,23 @@ button {
 	width: 2em;
 	height: 1.7em;
 	font-size: 1.8em;
-	background-color: lightgray;
-	color: black;
+	background-color: #000420;
+	color: #42A5F5;
 	border-width: 0;
 }
 
 .tempo-button:hover{
-	background-color: grey;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
 	border-width: 0;
 }
 
 #tempoinc{
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 1px 15px 0;
 }
 
 #tempodec{
-	border-radius: 3px 0px 0px 3px;
+	border-radius: 15px 0px 0px 1px;
 }
 
 .exit-button{
@@ -626,20 +653,22 @@ button {
 }
 
 #loadButton{
-	color: darkorange;
-	background-color: black;}
+	color: #42A5F5;
+	border-width: 0;
+	background-color: white;}
 
 #loadButton:hover{
-	background-color: darkorange;
-	color: black;}
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
+	color: white;}
 
 #loadCancel{
 	color: red;
-	background-color: black;}
+	border-width: 0;
+	background-color: white;}
 
 #loadCancel:hover{
 	background-color: red;
-	color: black;}
+	color: white;}
 
 #load_textarea{
 	font-size: 1.4em;
@@ -688,9 +717,10 @@ img.preload { display: none; }
 	margin-block: 0;
 	height: 36px;
 	width: 60px;
+	background-color: #000420;
 	border-radius: 0 0 0 0;
-	background-color: black;
 	color: white;
+	border-width: 0;
 	font-size: 1em;
 	padding: 0;
 	font-weight: bold;
@@ -706,23 +736,20 @@ img.preload { display: none; }
 	font-weight: bold;
 }
 
-#demo1{border-radius: 10px 0 0 0px;color: orange;border-color:orange}
-#demo1:hover{color: black;background: orange;}
+#demo1{border-radius: 10px 0 0 0px;color: #42A5F5;border-color:#42A5F5}
+#demo1:hover{color: black;	background: linear-gradient(145deg, #42A5F5, #0076d3);}
 
-#demo2{color: #FF7F00;border-color: #FF7F00}
-#demo2:hover{color: black;background: #FF7F00;}
+#demo2{color: #42A5F5;border-color: #42A5F5}
+#demo2:hover{color: black;	background: linear-gradient(145deg, #42A5F5, #0076d3);}
 
-#demo3{color: #FF5500;border-color: #FF5500;}
-#demo3:hover{color: black;background: #FF5500;}
+#demo3{color: #42A5F5;border-color: #42A5F5;}
+#demo3:hover{color: black;	background: linear-gradient(145deg, #42A5F5, #0076d3);}
 
-#demo4{color: #FF2B00;border-color: #FF2B00}
-#demo4:hover{color: black;background: #FF2B00;}
+#demo4{color: #42A5F5;border-color: #42A5F5}
+#demo4:hover{color: black;	background: linear-gradient(145deg, #42A5F5, #0076d3);}
 
-#demo5{border-radius: 0px 0px 10px 0px;color: #FF0000;border-color: #FF0000}
-#demo5:hover{color: black;background: #FF0000;}
-
-
-
+#demo5{border-radius: 0px 0px 10px 0px;color: #42A5F5;border-color: #42A5F5}
+#demo5:hover{color: black;	background: linear-gradient(145deg, #42A5F5, #0076d3);}
 
 
 #overlay {
@@ -740,7 +767,7 @@ img.preload { display: none; }
 }
 
 #overlay_display{
-	background-color: cadetblue;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	border-radius: 17px;
 	display: grid;
 	text-align: center;
@@ -756,7 +783,7 @@ img.preload { display: none; }
 
 #overlay_display h2{
 	grid-row-start: 1;
-	background: linear-gradient(to bottom, #fdf68c 0%, #f4cd2a 58%, #eda323 80%, #d28d0d 100%);
+	background: #CAF0F8;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	color: #fff;
@@ -781,17 +808,18 @@ img.preload { display: none; }
 #shareButtons{
 	grid-row-start: 4;
 	grid-column-start: 1;
+	border-width: 0;
 }
 
 #shareCopy{
-
 	border-radius: 2px 10px 2px 10px;
 	background-color: black;
-	color: rebeccapurple;
+	color: #42A5F5;
+	border-width: 0;
 }
 
 #shareCopy:hover{
-	background-color: rebeccapurple;
+	background: linear-gradient(145deg, #42A5F5, #0076d3);
 	color: black;
 }
 
@@ -799,6 +827,7 @@ img.preload { display: none; }
 	border-radius: 10px 2px 10px 2px;
 	background-color: black;
 	color: red;
+	border-width: 0;
 }
 
 #shareExit:hover{
